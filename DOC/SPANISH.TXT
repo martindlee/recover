@@ -1,0 +1,1018 @@
+Ésta es una traducción de la computadora de Recover manual. No es muy exacto.
+
+Si usted quiere usar este manual para ayuda en-línea con el solo usuario
+autorice, renombre el archivo al manual.txt.
+
+                         RECOVER versión 2.0
+          Derechos de propiedad literaria (c) 1995, AbriTechnologies,
+
+Estas instrucciones son dividido en 7 secciones:
+1.0 - la INTRODUCCION
+2.0 - se EMPEZADO
+3.0 - la INFORMACION AVANZADA
+4.0 - el DESCUBRIMIENTO del ERROR EN SU APP.
+5.0 - TRACE MÉTODO del SALVAMENTO
+6.0 - el SPM MEMORANDUM SALVAMENTO
+7.0 - OTRAS NOTAS de la APLICACION
+
+                        1.0 - la INTRODUCCION
+                        ~~~~~~~~~~~~~~~~~~~~~
+Recover son un comprensivo, automatizado, FoxPro banco de datos mesa 
+utilidad de la recuperación que puede integrarse en su software de FoxPro. Él 
+requiere muy pequeño o ninguno la interacción del usuario terminal - ni 
+habilidades especiales o editores de los datos.
+
+1.1 versión 2.0 rasgos:
+=====================================
+* mejoró, descubrimiento del error exacto con opciones para seleccionar 
+  descubrimiento del error sólo.
+* la recuperación del archivo grande más rápida.
+* Solo usuario o realeza la licencia libre
+* Realeza que la versión libre incluye ahora
+  1) el apoyo del idioma internacional.
+  2) opcionalmente apaga mensajes de progreso y/o diálogos de MessageBox
+* disponible para FoxPro DOS/Windows/Mac (2.6) y VisualFoxpro.
+* Recover usos varias maneras diferentes de reparar o salvar .dbf y .fpt
+  archivos. Puede recuperar los datos igualan de un pedazo del archivo
+  fragmentado - gusta ' file0004.chk ' siendo el resultado de chkdsk o
+  scandisk.
+* Un nuevo, más visual archivo pedazos salvamento pantalla método.
+* Incluye patente el método de recuperación de Rastro pendiente - un .DBF
+  muy fiables y .FPT archivan recuperación para las aplicaciones de
+  seguridad altas. (Más teórico los aspectos del método del Rastro están
+  disponibles en el http:/abri.com/trace.html.)
+* Recover también reparará ' Clipper/FoxBase/dBaseIII PLUS'    
+.DBF / .DBT y AlphaFive archiva con limitaciones siguientes: 
+(1) trace0 método no se usa, (2) la reparación del memorándum se
+limita a quitar indicadores malos y título repare, (3) AlphaFive
+archivan la reparación del memorándum se limita al título de archivo
+de memorándum.
+
+ (Autorice se expresan Acuerdo y Negador más correctamente en inglés.)
+1.2 Recover Vers. 2.0 License Agreement and Disclaimer 
+======================================================
+SINGLE USER LICENSE (RecoverS.app):
+Single user license entitles the original purchaser, to use Recover on a 
+single computer by a single user for each copy purchased. It is to be used 
+as a separate application and not programatically integrated into other 
+applications.
+
+ROYALTY FREE DISTRIBUTABLE LICENSE (Recover.app):
+Distributable royalty free license entitles you, the original purchaser of 
+Recover, to royalty free distribution of Recover with your own legitimate 
+application (.APP or .EXE), as long as your application was generated on 
+single CPU by same programmer/developer and Recover is used only within 
+your own application. You cannot have any intention of distributing copies 
+of Recover for free or for gain of any type.
+
+SITE LICENSES:
+Available per user (single user license) or per developer (royalty free 
+compiled code license).
+
+DISCLAIMER:
+Recover is supplied as is without warranty of any kind. Abri Technologies 
+disclaims all warranties, expressed or implied, including, without 
+limitation, the warranties of merchantability and of fitness for any 
+purpose. Abri Technologies assumes no liability for damages, direct or 
+consequential, which may result from the use of RecoverS.app or the 
+compiled code.
+
+All rights not expressly granted here are reserved to Abri Technologies.
+
+1.3 Ejecutando Recover sin el software de FoxPro.
+====================================================================
+
+El solo usuario Windows (3.1/95) o la versión de DOS de RecoverS.app puede
+correrse sin FoxPro 2.6 software con los archivos siguientes: RecoverS.app,
+RunRecov.exe, y FOXW2600.ESL o FOXDX260.ESL.
+
+Obtenga los archivos necesitados de http://abri.com/recover.html#FpRun 
+
+Los archivos deben estar en el mismo directorio y RunRecov.exe debe ser
+empezado del mismo directorio. Alternativamente el archivo de .ESL puede
+ponerse en DOS, Windows o camino de Windows/system - con tal de que el
+sistema pueda encontrarlo.
+
+En algunos casos el Recover la versión de DOS puede exhibir contestación
+del ratón muy lenta. En esa hechura del caso seguro eso extendió la memoria
+se apaga y extendido la memoria se enciende en EMM386.EXE chófer de
+config.sys.
+
+                         2.0 - se EMPEZADO
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+2.1 solo Usuario & la Realeza las diferencias de la versión Libres.
+=========================================================================
+La Realeza la versión libre es parámetro manejado y devuelve tipo de la función 
+mensajes del error numéricos. El Solo usuario viene con una interface de la 
+pantalla para el usuario para seleccionar Recupera (y GenDef) los procedimientos.
+
+Estas instrucciones incluyen algunos rasgos de la programación adicionales
+del Realeza que la versión libre no pensó para la sola versión del usuario.
+El requisito las diferencias del uso deben estar claras. 
+
+La sola versión del usuario es upgradable a la Realeza la versión libre -
+por favor verifique más reciente lista del precio.
+
+2.2 RECOVER Uso:
+==========================
+La sola versión de pantalla de usuario simplemente se llama como 
+
+DO RecoverS
+
+El resto de Recover proceso se selecciona de las opciones de la pantalla.
+
+El repartible - la realeza la versión libre - se llama a como:
+
+DO Recover with FileName[, MemoFile [, OptionCodes]]
+o
+RecResult = Recover(FileName[, MemoFile [, OptionCodes]])
+
+donde Filename es cordón que representa el filename exacto, y OptionCodes
+es un cordón de 'T' o los carácteres de 'F' para seleccionar Recover
+opciones - vea "La opción Codifica" en "Información Avanzada" la sección
+debajo de. Si usted va a distribuir Recover con su app y no incluyó
+trace método codificando, se recomienda que usted apague la opción de
+método de vFPS.
+
+Por favor Note: Como otros archivos de .app, el archivo de Recover.app no
+puede ser incluido en FPD/FPW/MAC/VFP en su edificio del proyecto. Se
+marcará como excluyó. Usted necesita agregar Recover.app a su distribución
+final archiva - ante usted use al Mago del Arreglo para generar los
+diskettes de la distribución.
+
+Ejemplos:
+
+DO RECOVER WITH 'Account.dbf'
+
+usos opciones normales para .DBF y .FPT archiva, mientras
+
+=RECOVER('Account.dbf', '', 'TTFFFFFTTTTTTTTTTTTTT')
+
+usos las opciones normales pero sólo permite método del vFPS para el salvamento 
+del registro.
+
+Si el MemoFile está ausente o tiene extensión ' .fpt ' o ' el dbt',the MemoFile 
+la variable puede reemplazarse con el cordón vacío ''.
+
+Para las opciones normales, el cordón de OptionCodes puede reemplazarse con '' 
+o omitido.
+
+Una función adicional hábil GenOpt.prg es incluido con realeza libre 
+versiones por generar el cordón de OptionCodes. Usted puede revisar la función 
+y lo usa para generar un cordón del portapapeles para incluir en su programa 
+línea.
+
+2.3 archivo de la definición ' filename.def': 
+===================================
+Salvo el registro del título trivial y reparaciones de contador de memorándum, 
+Recover requieren un archivo de la definición ' filename.def' para estar 
+presente en el mismo directorio.
+El archivo de la definición se genera con la utilidad de GenDef.app.
+
+En la sola versión del usuario la utilidad de GenDef.app se construye en - el
+<Generate .DEF file> el botón.
+
+Use la utilidad de GenDef.app para generar el archivo de la definición,
+'filename.def' de cualquier copia buena de su mesa del banco de datos -
+puede ser otro o incluso vacío DBF archivan pero deben tener los mismos
+campos exactamente en mismo orden. Una fuente buena es que sus más
+recientes backup copian del archivo. Para VisualFoxpro un pequeño archivo
+adicional ' filename.de_' que contiene el banco de datos se genera filepath
+- si necesitó.
+
+Si un backup o una copia del archivo con misma estructura no están disponibles, 
+usted, pueda intentar generar el .DEF archive del archivo malo. Sin embargo, 
+esto es menos fiable y el primer método se recomienda.
+
+Sintaxis de Gendef.app:
+DO GENDEF WITH FileName[, MemoFile [, OptionCodes]]
+   o
+GenDefResult=Gendef(FileName[, MemoFile [, OptionCodes]])
+
+Las mismas reglas aplican aquí para los parámetros en cuanto a Recover.app.
+
+Una lista de "GenDef Opción Códigos" se encuentra en la "Información Avanzada" 
+la sección.
+
+Ejemplo: = GenDef("account.dbf")
+
+ADVIRTIENDO: (1) no usa Trace opción de los códigos si usted está reparando el 
+archivo para la primera vez. El Trace método es un método de la recuperación 
+excelente y muy fiable pero requiere alguna programación cambia y archivo que 
+pone en código antes archive que la corrupción ocurre. (2) reconstruya el 
+archivo de la definición si cualquier mesa propiedades o estructura han 
+cambiado.
+
+
+                        3.0 - La INFORMACION AVANZADA
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1 recuperan Códigos de la Opción:
+=========================
+Los códigos de la opción se muestran numéricamente debajo en sucesión con norma 
+valores en anaqueles.
+
+   Record2.0 archivo (DBF) los métodos de descubrimiento de error:
+ 1(T)  - Check record file header (el cheque registro archivo título)
+ 2(T)  - Scan records - with delete flag - and trace code (IF coded)
+         (examine archivos - con anule bandera - y código del rastro (SI
+         codificado))
+ 3(F)      AND check fields for corruption (slower)
+           (Y campos del cheque para corrupción (más lento))
+ 4(F)        AND check suspicious fields (slower)
+             (Y cheque los campos sospechosos (más lento))
+             (' advertencias - el eg. derecho el campo del trabajo por
+             horas justificado '      Peter Joh',  datos binarios en campos
+             del trabajo por horas, etc.)
+
+   Archivo del registro (DBF) los métodos de la reparación:
+ 5(T)  - repair header (el título de la reparación)
+ 6(T)  - Trace method (if coded) (Trace método (si codificado))
+ 7(T)  - Last field def search (última búsqueda de def de campo)
+ 8(T)  - vFPS (Visual File pieces salvage) (salvamento de pedazos de Archivo Visual)
+
+   Memo descubrimiento del error:
+ 9(T)  - Check memo file header (el cheque memorándum archivo título)
+10(T)  - Scan memos - level 1 - invalid pointers (slower)
+         (examine memorándums - nivelado 1 - los indicadores inválidos (más
+         lento))
+11(T)      AND - level 2 - memo crosslinks / overlaps (slower)
+           (Y - nivelado 2 - el crosslinks del memorándum / solapa (más
+           lento))
+
+Archivo del memorándum (FPT) los métodos de la reparación:
+12(T) - repair header (el título de la reparación)
+13(T) - Trace method (if coded) (el método del rastro (si codificado))
+14(T) - SPM method (el método de SPM)
+15(T) - Repair memo pointers (los indicadores de memorándum de reparación)
+16(T) - Empty memo (Vacíe memorándum)
+
+Otras opciones
+17(T) - Save extraneous memos into RecoverM.dbf/fpt (SPM only)
+18(T) - Show Progress messages
+19(T) - Show end MsgBox Dialog
+20(T) - Save old DBF/FPT (major changes changes only - when file rewritten).
+21(T) - Warning/Error on .DEF file / Header field discrepancy. - or valid
+        FPT header mBlockSize mismatch.
+        (El mensaje / Error cuando .DEF archivan y archivo Título campo
+        diferencia. - o cuando Los FPT título mBlockSize son parece
+        incorrecto.)
+
+3.2 Recover función Valora:
+==============================
+Cuando usó como una función, RECOVER() ingresos +1 si la recuperación exitoso 
+y números del negativo si no exitoso.
+
+Lo siguiente es Recover valores del retorno:
+Significado de valor
+---------------------------------------------------------
+ +1 archivo recuperó
+  0 ningún error encontró
+ -1 error del usage/parameters
+ -2 extensión de Filename (.DBF, .SCX,...) extrañando
+ -3 archivo no encontró
+ -4 uso del archivo exclusivo requirió
+ -5 archivo de DEF no encontró o no puede abrir.
+ -6 .DEF sospechosos archivan (posiblemente no al corriente).
+ -10 archivo del registro no recuperó
+ -11 archivo del memorándum no recuperó
+
+El solo usuario (pantalla) la versión no devuelve un valor.
+
+3.3 archivo de la definición ' filename.def':
+=============================================
+El archivo de definición de estructura simplemente es otro FoxPro DBF, 
+definiendo el estructura de su archivo de los datos.
+
+Debido a los varios valores involucrados en el archivo, se recomienda para usar 
+la utilidad de GenDef para hacer el archivo de .def. Si usted está interesado 
+en el 
+volúmenes de archivo de definición, usted puede ver los detalles a nuestro 
+website http://abri.com/deffile.txt
+
+Uso de Gendef:
+DO GENDEF WITH FileName[, MemoFile [, OptionCodes]]
+   o
+GenDefResult=Gendef(FileName[, MemoFile [, OptionCodes]])
+
+Example:    =GENDEF('customer.dbf', 'FFTT')
+
+Este ejemplo no inserta códigos del rastro en su archivo, obsequios,
+campos del carácter como texto sólo campos (útil descubriendo binario
+basura en campos del carácter), y usa diálogo de mensaje de extremo cuando 
+terminó.
+
+GENDEF le dará la opción de convertir su .DBF archive para usar el 
+Trace método - discutió debajo. La próxima opción estará insertando a 
+diseñadores 
+en su archivo del memorándum.
+
+IMPORTANTE: Usted debe reconstruir la definición archiva con la utilidad de
+Gendef si cualquier propiedad de la mesa o estructura han cambiado desde
+último archivo de .def.
+
+Si usted desactiva extremo mensaje caja diálogo (vea la opción codifica debajo) 
+usted puede usar los valores del retorno siguientes de determinar el resultado.
+
+3.4 GenDef Return los valores:
+=========================
+ 0 = exitoso
+-1 = los parámetros perdidos
+-2 = el file(s) no encuentre
+-3 = no archive accesible, compartido o adultere o VFP archivan en FP2.X
+-4 = el uso exclusivo de archivo requirió
+-5 = no un FoxPro, dBaseIII o archivo de FoxBase.
+-6 = el memofile perdido
+-7 = el DBC Banco de datos archivo no encontró
+-8 = el acceso exclusivo a una copia buena de archivo de DBC requerida
+
+3.5 GenDef Opción códigos:
+===================================
+OptCode No. (valor Normal) - Significando
+1(F) la inserción R_TRACE_ graban códigos del campo
+2(F) Y el rastro de memorándum de inserción también codifica.
+3(F) los campos de carácter de obsequio como texto sólo.
+4(T) use diálogos.
+5(F) intenta .DEF generadores archivan del archivo corrupto.
+
+3.6 Métodos de Recuperación de archivo: 
+======================================
+RECOVER usan cualquiera de varias maneras de recuperar archivos dañados. Puede 
+ser útil para entender la sucesión Recover usos para recuperar su registro 
+archivos. Dependiendo de opciones encendieron la sucesión es:
+
+RECOVER cheques primero que los .dbf archivan título para los errores y 
+corrupción del registro para los errores.
+
+IF  ningún error se descubree
+Recover ingresos con el 0 código y el extremo MsgBox dialogan o beneficios
+al descubrimiento de error de memorándum si necesitó.
+
+Si sólo corrupción del título descubriera, Recover reparaciones el título
+si necesitó (y la opción encendió) y ingresos o beneficios al
+descubrimiento de error de memorándum.
+
+Si la corrupción del registro se descubre, Recover usará los métodos siguientes
+de reparación del archivo: Si el archivo es codificado con el método del rastro 
+que usará el código del rastro para restaurando el archivo.
+ELSE
+Intentará reparar archivo con la última búsqueda de definición de campo
+(casos de muy adultere o cambió de sitio título).
+ELSE
+Usará el método del vFPS que plantea el "VisualFilePiecesSalvage" 
+pantalla.
+
+Si no hay corrupción de archivo de registro o ha sido fijo, Recover,
+beneficios al descubrimiento de error de memorándum y recuperación del 
+memorándum.
+
+El título de archivo de memorándum se verifica para los errores del título
+y indicadores del memorándum es examinado para los errores.
+
+Si sólo errores del título existen, Recover reparaciones el título y
+ingresos el código apropiado.
+
+Si el error de indicador de memorándum se descubre, Recover recursos a uno 
+del métodos de salvamento de memorándum siguientes en el orden de prioridad:
+
+IF el archivo es codificado con códigos del rastro
+Recover usará el Método del Rastro para recuperar el archivo del
+memorándum y indicadores.
+  ELSE
+Intentará usar el método de SPM SI hay menos de 5000
+memorándums en el archivo del memorándum.
+  ELSE
+Eliminará indicadores del memorándum malos y los informará en el
+Recovrep.txt informan archivo.
+  ELSE
+Si ningún indicador del memorándum es válido, restablecerá todos los 
+indicadores del memorándum y vacía el archivo del memorándum.
+
+Usted puede incluir o puede excluir cualquiera de los métodos de la 
+recuperación con la opción códigos.
+
+Usted también puede usar Recover como una herramienta de descubrimiento de 
+error seleccionando la opción apropiada codifica.
+
+3.7 Recover Rastro Codificando:
+=====================================
+Recover Trace codificar es un método muy fiable de recuperar dañado 
+registro Y el memorándum archiva para las aplicaciones con probabilidad más 
+alta conocida de daño del archivo o para los requisitos de aplicación de 
+seguridad altos - la contabilidad, seguridad banca, gubernamental, etc...
+
+Trace método detalla y se encuentran instrucciones en Sección 5.0
+
+3.8 últimas campo definición búsqueda notas: 
+============================================
+Este método es útil si el título se daña mal, parcialmente extrañando o el
+el archivo entero cambió de sitio. No es conveniente si el resto del
+archivo también es dañado. Si usted no está seguro de la situación que es
+mejor especificar el método del vFPS para la recuperación del archivo - a
+menos que, por supuesto, usted tiene rastro codificando qué automáticamente
+toma prioridad.
+
+(Método del vFPS)
+
+3.9 vFPS method ("Visual File pieces salvage"):
+===============================================
+El "VisualFilePiecesSalvage" al que la pantalla viene cuando otros métodos 
+se excluyó o no podría usarse. 
+
+Descripción funcional:
+
+Un datos crudo que ve área aparece con los datos del archivo (y
+posiblemente otro basura) en una ventana en izquierda, un "espectador del
+registro" al fondo y otro archivo posicionando y ahorrando mandos. En los
+datos crudos que ven área a izquierdo, los carácteres rojos y verdes
+indican la magnitud de un registro - el carácter rojo que es el FoxPro "el
+registro anula bandera" y refered a como el "indicador del registro." En
+algunos casos sólo la primera porción del el registro puede mostrarse en
+los datos crudos que ven área.
+
+Usted puede mover el indicador del registro en cualquier parte a en el área
+viendo cruda por simplemente pulsando el botón en una posición del
+carácter. Usted puede inspeccionar el registro correspondiente en el
+"espectador del Registro" al fondo. El <el Cheque registro> el botón puede
+usarse para verificar que un registro es válido. El "verificando" la
+calidad depende adelante el "Examine calidad" poniendo - el más alto es el
+verificando más completo pero más lento. Éstos "Scan_quality" también
+poniendo afectan <Scan_good> <Skip_bad> los funcionamientos del botón.
+
+Instrucciones:
+
+Ponga el indicador del registro al principio de primero registro válido en
+el archivo y pulsa el botón el <MarkStartRec> el botón. Entonces mueva el
+indicador del registro con el ">>" (o <n>) el botón del registro delantero
+y verificando cada registro con el "Espectador del Registro" y/o el
+<Check_record> el botón hasta usted posiciónelo en el último registro
+verificado BUENO en ese bloque del archivo bueno y entonces pulsa el botón
+el <MarkEndRec> el botón. El <Scan_good> el botón es útil reemplazando el
+">>" / <Check_record> / la sucesión del Cheque Visual - excepto la parte
+visual. Quiere en la mayoría de los casos siga examinando bueno archivos
+hasta que encuentre el último uno en ese bloque - qué entonces puede ser
+marcado con el <MarkEndRec> el botón. Si hay varios bloques buenos de datos
+interrumpidos con basura, usted puede repetir el procedimiento anterior
+para cada bloque bueno usted encuentra. Una vez usted marcó un bloque
+bueno, usted usa el ' >> ' el botón a visualmente adelante al próxima área
+del no-basura y use el ratón y indicador del registro para encontrar el
+próximo bloque bueno. El <Skip_bad> el botón también puede ser útil para
+saltar encima de los bloques malos a encuentre el próximo bloque bueno -
+pero en caso de los bloques de archivo de desplazamiento puede no sea
+exacto. Cuando usted ha terminado marcando todo el archivo bueno bloques
+(puede ser único) sólo pulse el botón el <Done_> el botón - o <Cancel_> si
+usted desea abortar.
+
+Resumen de los mandos:
+
+* El"|<", "<<", ">>" y ">|" (o <B>, <P>, <N> y <E> en DOS) el movimiento de
+los botones el indicador a BOF, uno graba atrás, uno graba adelante y EOF
+respectivamente. El rango de salto de registro de "<<" y ">>" puede ser
+cambiado cambiando el valor '1' entre el "<<" y ">>" los botones a
+cualquier entero positivo menos de 100.
+* Usted también puede saltar a cualquier registro o posición del archivo 
+cambiando los valores en el "RecNum" y "FilePos" los campos.
+* El <Toggle_Delete> se usa para cambiar archivo inválido anule banderas. 
+Usa esto cuando usted cree que usted tiene una posición del registro válida y 
+el <Check_record> indica una bandera inválida. Un FoxPro válidos anulan 
+la bandera o es un espacio ' ' o un '*' el carácter. 
+* <Scan_good> <Skip_bad> se ha discutido anteriormente. 
+* <Undo_last> se usa para o cancelar el último uso del <MarkStartRec> o
+<MarkEndRec>.
+
+Problemas de Mousing:
+La acción del mousing en los datos crudos que ven área puede ser lenta.
+Esto es sobre todo arregle para FPD bajo Win95 - requiriendo posiblemente
+varios pulsa el botón. Eliminar este problema con FPD pusieron EMM386.EXE a
+FUERA DE y sólo empiece el sistema en modo de DOS.
+
+Nota: El método del vFPS usado en archivos de Visual FoxPro  requiere el Visual 
+Foxpro de Recover - desde que despliega archivos en un vistazo pantalla.
+
+               4.0 - ERROR DETECTION IN YOUR APP.
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              (Descubrimiento del error en su APP)
+
+El descubrimiento del error temprano es sumamente importante para usted la 
+aplicación. Los datos archivan los errores pueden arrastrarse en inadvertido y 
+pueden construir hasta en el futuro el usuario terminal avisos los errores de 
+los datos extendidos.
+
+Aquí está algunos ejemplos de errores que pueden ir inadvertidos. Sus app
+pueden ser "OK corriente", pero pero los errores están construyendo
+invisiblemente a.
+
+"Perdido Graba Fenómenos"
+Por la razón cualquier, el error más frecuente en archivos de los datos es el
+título registro contador error malo.
+
+En FP2.X un error de contador de registro demasiado grande producirá el error 
+típico No. 15, "Not a table/DBF file!". Esto normalmente los medios usted ha 
+perdido algunos archivos al final del archivo en un proceso en alguna parte. 
+Lleve más allá más, Visual Foxpro ignora este problema simplemente y continúa 
+con el programa. Esto puede no sea semejante bendición. Usted no se alerta que 
+un problema ha ocurrido y no dado una oportunidad de tomar medidas correctivo.
+
+El problema más insidioso, aunque menos frecuente, es el registro demasiado 
+pequeño lo opuesto el error. Este error simplemente se ignora en ambos FP2.X o 
+VFP y hace NO el resultado en un mensaje del error. Esos archivos adicionales 
+no son accesibles Y cuando usted APPEND o INSERT esos archivos se destruyen.
+
+"Memorándum indicador error aumento"
+
+Los indicadores del memorándum se ponen corruptos - proporcionalmente para
+archivar actividad y el tamaño de archivo. La corrupción ocurre de varias
+maneras. 
+
+1) el indicador ilegal: el indicador indica memorándum fuera de archivo del 
+memorándum - fácilmente perceptible con una utilidad de reparación de archivo 
+buena (GFRU). Este error puede causar PACK problemas y por supuesto la pérdida 
+de datos del memorándum.
+
+2) Cruzó indicadores: Dos o más indicadores que indican el mismo memorándum - 
+perceptible con un GFRU. Pueda causar pack0 problemas y pérdida de datos.
+
+3) Los indicadores malos: SI esto pasa y es normalmente un-perceptible y 
+un-reparable - EXCEPTO con el método de Recover Trace. El problema construye a 
+y puede causar un enredo en el futuro para el usuario terminal.
+
+"Otro aumento de corrupción de archivo"
+Hay otras formas invisibles de corrupción del archivo que la figura a un-notó 
+- el inválido anula banderas y basura en campos del carácter (causando buscan 
+problemas), etc.
+
+El antedicho los errores del archivo no puede producir las aplicaciones
+terminando, pero los errores continúan aumentando un-notó hasta
+la cosa entera va mala.
+
+Si se permiten errores ir un-descubrió el daño acumulado resultante 
+pueda en algunos casos produzca archivos de los datos inútiles.
+
+Es sabio verificar sus archivos con Recover periódicamente para los
+errores - Y Después de CADA caída del sistema. Así como Windows95 y muchos
+Unix sistemas cheque el sistema del archivo para daño, al poner en marcha,
+puede ser una práctica buena a arreglo su app para usar Recover
+verificar y archivos de la reparación siempre que empezara a su aplicación.
+Usted puede construir un archivo fácilmente examine / la rutina de la
+reparación - un ejemplo dado debajo.
+
+Este ejemplo tiene el los pathnames de todos sus archivos de los datos
+importantes guardaron en un archivo de DBF TABLES.DBF así que usted puede
+examinarlos para el error a empezar de su app.
+
+SELECT 0
+USE TABLES.DBF && (tiene un campo ' el filename')
+SCAN
+  Select 0
+  * Examine para los errores y reparación - excluya método del vFPS
+  WAIT WINDOW "Archivo de los datos verificando" +ALLT(FileName) NOWAIT
+  RecResult = Recover((ALLT(FileName)),'', 'TTFFTTTFTTTTTTTTTTTTT') && el 
+método de vFPS de salto 
+ * la idea buena al reindex el archivo si el daño informara.
+  * IF RecResult = 1
+  * Su (FileName) el procedimiento del reindex aquí.
+  * ENDIF
+  Select TABLES
+ENDSCAN
+USE IN TABLES
+
+                  5.0 - Trace MÉTODO del SALVAMENTO
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+VENTAJAS: 
+- el método muy fiable de recuperar registro dañado Y archivos del memorándum
+- la recuperación rápida.
+- recupera archivos sin cualquier interacción del usuario.
+
+DESVENTAJAS: 
+- Trace involucran algún código de la programación adicional en su app.
+- Mientras recupera memorándums del texto fiablemente, no investiga 
+específicamente  fuera el General (y cuadro) el campo ' memorándums - pero ve 
+comentario debajo.  Los campos generales realmente son memorándums con 
+información del archivo gráfica binaria.
+
+Comentarios extensos: 
+- Usted puede minimizar su rastro que codifica requisitos sólo usándolo
+  para archivos críticos. Archivos que raramente cambian, probablemente no
+  necesita los Trace codificando.
+- Si los memorándums del texto regulares están presentes, es muy probable
+  que General (y cuadro) se recuperarán campos también con el método del
+  rastro. Note eso hay maneras de acopio los archivos gráficos en los
+  memorándums del texto si necesario. En algunos otros recopiladores estos
+  archivos guardados en memorándums están BLOBs llamado.
+- la recuperación del memorándum deja secciones de archivo de memorándum extras 
+  intacto tanto como posible.
+
+Trace código en archivos de DBF:
+=================================
+
+Trace le requieren 7 carácter a un extra ' el campo del r_trace_' a
+empezar del grabe en su mesa (o 16 campo del carácter si diseñadores son
+incluido en memorándums). Cuando usted genera un nuevo archivo de la
+definición, Gendef.app puede opcionalmente modifique la mesa para usted y
+rastros de la inserción en sus archivos de la mesa. Para FoxPro visual
+archiva GenDef hará la modificación necesaria al archivo del banco de datos
+asociado, .DBC, conservando relaciones, los índices y mucho tiempo nombres.
+
+Trace requieren algún programa codificando adicional. Si usted selecciona
+para no usar memorándum Trace (vea debajo) sus cambios de código de
+programación son bastante simples y usted ahorra 9 campo espacia en sus
+archivos.
+
+La función de Rtrace se proporciona con registrado Recover copia por
+escribir el campo de código de seguridad a sus archivos.
+
+Procedimiento - los Propósito / Parámetros
+----------------------------------------------
+RTrace() - Escribe Trace código para la recuperación del archivo
+	     /Ninguno: Trace en .DBFs sólo
+	     /Uno:  Trace en .DBFs y .FPTs
+
+Cuando añadiendo .DBF graba use el Rtrace () el procedimiento:
+
+APPEND BLANK
+REPLACE r_trace_ WITH Rtrace();
+  field2 WITH value2;
+  field3 WITH value3;
+        .
+        .
+  fieldN WITH valueN
+
+O si usando inserción de SQL
+
+INSERT INTO <filename> VALUES (Rtrace(), value2, value3, ......, valueN)
+
+Trace código en memorándums:
+=============================
+Trace método requiere más cuidado con memorándums. Usted necesita declarar el 
+MemoTrace el público inconstante en alguna parte a empezar de su programa.
+
+PUBLIC MemoTrace
+MemoTrace = ""
+
+Memorándum que lee / escribiendo requiere manteniendo los 19 carácteres de
+código de rastro a el principio de cada memorándum no-vacío. Dos funciones
+son incluido con registrado Recover copia para los memorándums del
+writing/reading con el código del rastro.
+
+Procedimiento - el Propósito / <los Parámetros>
+-------------------------------------------
+MemoPut() - los Ingresos el volumen del memorándum codificado.
+	<FieldName>: nombre de campo del memorándum
+  	<MemoText>:  el texto del memorándum normal para la escritura del 
+                     memorándum
+MemoGet() - Recupera el texto del memorándum menos el código del rastro. 
+	<Memo>: el cordón del memorándum entero.
+
+Añadir archivos con Trace de archivos de DBF y memorándums usan el
+Rtrace(1) y Memoput () los procedimientos:
+
+APPEND BLANK
+REPLACE r_trace_ WITH Rtrace(1);
+  field2 WITH value2;
+  field3 WITH value3;
+        .
+        .
+  MemoField1 WITH MemoPut("MemoField1", TheMemoText1);
+        .
+  MemoField2 WITH MemoPut("MemoField2", TheMemoText2);
+        .
+  fieldN WITH valueN
+
+o si usando SQL-insert
+
+INSERT INTO <TableName> VALUES(Rtrace(1), value2, value3, ..,;
+  MemoPut("MemoField1", TheMemoText1),;
+  MemoPut("MemoField2", TheMemoText2),..............., valueN)
+
+Siempre que se cambien volúmenes del memorándum
+(SCATTER...MEMO/GATHER...MEMO o cualquier cosa) usted debe poner al día el
+Trace código. La sintaxis es:
+
+Replace r_trace_ with Rtrace(1);
+        MemoField1 with MemoPut("MemoField1", MemoField1);
+        MemoField2 with MemoPut("MemoField2", Memofield1)
+
+Ejemplo:
+Replace r_trace_ with Rtrace(1);
+  Descript WITH MemoPut("Descript", Descript);
+  Notes WITH MemoPut("Notes", Notes)
+
+Si usted inicialmente el arreglo sus .DEF archivan para sólo .DBF Trace y 
+cambian su importe después agregar memorándum Trace también, usted necesita a 
+1) anule el R_TRACE_ campo de su archivo de .DBF estructura
+2) re-ejecute la utilidad de GENDEF.
+
+
+                         6.0 - el SPM Memorándum salvamento
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SPM en primer lugar los cheques si sólo un número pequeño de indicadores es
+incorrecto. En ese caso corrige el problema simplemente eliminando el
+incorrecto indicadores del memorándum. Si la memorándum archivo datos
+región entera simplemente se cambia de sitio, SPM puede corregir tales
+problemas rápidamente.
+
+En casos más severos donde los memorándums están en bloques esparcidos en
+el memorándum archive, SPM usa su Modelo Estadístico que Empareja ("SPM")
+método que localiza los memorándums en el memorándum corrupto archivan
+(.FPT) y intenta ordenar y emparejarlos a las situaciones requeridas en el
+archivo del registro. Intenta emparejar memorándums según el tamaño,
+posición y tipo. Esta probabilidad en recuperación del memorándum depende
+adelante: a) la variedad en memorándum clasifica según tamaño b) la
+variedad en tipos de memorándums (normal memorándums del texto, campos
+generales, los memorándums del pict) c) el número de memorándums d) si los
+memorándums se condensa - desempaquetó los memorándums pueden tener
+oportunidades mejores.
+
+Este método consume a mucha computadora el poder interesado y el tiempo
+requerido es cuadráticamente proporcional al número de memorándums en el
+memorándum archivo. Recover que no usa el método si hay más de 5000
+memorándums en el archivo - le exigiría a una computadora excelente que
+hiciera el trabajo para los archivos más grandes en tiempo razonable.
+
+VENTAJAS:
+- SPM salva campo general y memorándums del texto.
+- No requiere ninguna interacción del usuario.
+- No requiere ningún programa codificando adicional.
+
+DESVENTAJAS:
+- LENTO - Para el memorándum mal fragmentado archiva SPM es MUY más lento
+  que los Trace método. El tiempo para SPM los aumentos del método
+  ordenando estadísticos cuadráticamente con número de los archivos y
+  cuenta del memorándum.
+- No es tan muy exacto como el Trace método.
+
+OTROS COMENTARIOS:
+A) puede haber unas situaciones cuando SPM no restaurará algunos
+memorándums (pero ve nota debajo). Por ejemplo, si un archivo recientemente
+condensado requiere 100 memorándums todos el mismo tamaño y tipo y hay sólo
+diez memorándums encontrados en el archivo del memorándum fragmentado, hay
+ninguna manera estadística de determinar donde el diez memorándums deben
+asignarse a.
+
+B) SPM guarda cualquiera se no-ajustado o los memorándums extraños (o
+general y Pict campos) encuentre en el archivo de RecoverM.DBF/FPT. Usted
+puede hojear el RecoverM archivan (si creó) para extraer memorándums no
+encontrados en el memorándum recuperado archivo. El último campo,
+"Dbf_record" el memorándum, puede haber hecho pensar en números del
+registro para el memorándum. ASEGURESE que SU APP no USA un "RecoverM.dbf"
+el archivo.
+
+                   7.0 - OTRAS NOTAS de la APLICACION
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+7.1 Apoyo del Idioma internacional:
+===================================
+Este rasgo está disponible para la realeza la versión libre. Recover
+permiten los mensajes de progreso y extremo que MsgBox dialoga en diferente
+idiomas.
+
+Recover mensajes están por defecto en inglés. Si el archivo RecovMsg.dbf
+está presente en Recover directorio de la salida, Recover usarán el campo de MSG para los mensajes en lugar del inglés predefinido. El archivo RecovMsg.dbf es incluido con realeza las Recover ediciones libres. Para tener Recover uso mensajes en su propio idioma, usted necesita traducir meramente el mensajes a su idioma. Tenga cuidado sobre la palabra orientación. Algunos
+los mensajes son mensajes parciales que esperan otra parte para seguir con
+un carácteres numéricos entre (por ejemplo un número del registro) qué
+es generado a través de Recover y no de los mensajes de RecovMsg.dbf.
+
+El primer registro no es un mensaje pero el conjunto de caracteres
+Recover usos para desplegar los mensajes. Usted puede cambiar el
+conjunto de caracteres para satisfacer su apoyo del idioma como largo
+cuando el conjunto de caracteres es un Windows normal (o MAC) el conjunto
+de caracteres (el conjunto de caracteres se ignora en FoxPro para DOS).
+También se sugería para no escoger un conjunto de caracteres muy ancho en
+que caso que el mensaje no puede encajar en la ventana de progreso y
+resultado en "OFF SCREEN..." tipo de mensajes del error.
+
+7.2 Que codifican Recover en su App (realeza la versión libre)
+=================================================================
+Recover (y GENDEF) usa funciones niveladas bajas y requiere acceso
+exclusivo a los archivos. En ese caso usted debe anotar fuera de otros
+usuarios en una red y cierre la mesa a ser recuperada. Un lugar bueno para
+probar integridad / accesibilidad de archivos compartido y los repara es al
+principio del primero el usuario del programa donde el uso exclusivo es
+posible.
+
+Aquí es un ejemplo de uno de muchas maneras cómo arreglar mesas
+automáticamente con Recover:
+
+Dos error codifica relacionando para adulterar archivos de DBF/FPT es:
+Código del error 15 - 'Not a table/DBF file.'
+Código del error 41 - 'Memo file is missing/invalid'
+
+En su programa usted podría usar un procedimiento ' OpenTable' para probar abierto un banco de datos para usted y repara el archivo si necesario. Lo siguiente SOLO es válido si el uso exclusivo puede obtenerse - solo o Primero el usuario de la Red.
+
+PROCEDURE OpenTable
+Parameter FileName
+Private ErrorCode
+ErrorCode=0
+ON ERROR ErrorCode=ERROR()
+USE (FileName) EXCLUSIVE
+ON ERROR
+IF ErrorCode=0
+  USE IN (FileName)
+  RETURN
+ENDIF
+IF ErrorCode=15 OR ErrorCode=41 && el problema de corrupción de archivo
+  * IF TAGs usó, re-índice O reconstruye .CDX archivan - como muestra anteriormente
+  * y reconstruye cualquier archivo de .IDX asociado
+  ...
+ELSE  && es otro problema - el acceso de archivo de red, índice malo, etc.,
+  * el código de error de cheque y toma acción apropiada
+ENDIF
+
+Otro acercamiento sería llamar Recover a su salida del app y tenerlo
+verifique cada error la mesa prona sólo para asegurarse. Esto toma un poco
+más mucho tiempo pero aseguraría integridad de sus mesas.
+
+Procedure CheckTable
+Parameter FileName
+IF Recover(FileName) > -1
+  * IF TAGs usó, re-índice O reconstruye .CDX archivan - como muestra anteriormente      * y reconstruye cualquier archivo de .IDX asociado      ...
+ENDIF
+
+Si usted tiene error múltiple las mesas pronas, usted podría ahorrar la mesa específica nombres en una serie o otra mesa - diga Tables.dbf que tiene TableName campos - y usa OpenTable o CheckTable para verificar a través de todas las mesas usted la necesidad verificó.
+
+Select Tables && or USE Tables
+SCAN
+  Select 0
+  =OpenTable(TableName) && or CheckTable(TableName)
+  Select Tables
+ENDSCAN
+
+Por favor note: Desde Recover usa rutinas de ON ERROR, usted no debe
+llame Recover de una rutina de ON ERROR. Si usted usa una rutina del
+error, para errores de DBF/FPT verificando, usted si debe hacer retorno
+primero, suelte el rutina del error (con orden ON ERROR) y entonces llama
+Recover.
+
+Lo siguiente es una rutina pequeña hábil si usted quiere verificar / la
+reparación todos mesas en directorio actual. Este ejemplo examina / las
+reparaciones las mesas sin deteniendo para el extremo <OK> el diálogo de
+caja de mensaje. De nuevo, recuerde eso el uso del archivo exclusivo se
+requiere - el lugar mejor para eso está en empezar de primero el usuario
+del programa antes de archivo que comparte salidas.
+
+* El cambio esto para satisfacer sus necesidades.
+PROCEDURE RecovAll
+PRIVATE ALL
+DBFCount = ADIR(DBFx, '*.dbf')
+FOR i = 1 TO DBFCount
+  IF DBFx[i,1] != 'FOXUSER.DBF';
+      AND DBFx[i,1] != 'RECOVMSG.DBF';
+      AND DBFx[i,1] != 'RECOVERM.DBF'
+    =RECOVER(DBFx[i,1],'','TTFFTTTTTTTTTTTTTTFTT')
+  ENDIF
+ENDFOR
+
+
+7.3 Re-edificio el archivo de .CDX
+=====================================
+Recover re-asociarán los .CDX archivan - si encontró - a la mesa. Es
+generalmente aconsejable reconstruir el .CDX archivan después del archivo
+se recuperó. Un acercamiento típico es:
+
+DELETE TAG ALL
+INDEX ON <Expr1> TAG <ExprName1>
+INDEX ON <Expr2> TAG <ExprName2>
+etc......
+
+En VisualFoxPro esto puede complicarse más si la mesa es parte de un 
+banco de datos con campo largo y nombres del índice.
+
+7.4 Interacción del Usuario eliminando:
+=================================================
+
+Hay sólo dos maneras que el usuario puede necesitar actuar recíprocamente
+con Recover proceso. Si pequeño o ninguna interacción del usuario es
+importante, usted puede eliminar un o ambos casos de la interacción
+de-seleccionándolo de Recover opciones.
+
+A) Cada tiempo usted usa Recover, muestra una ventana que informa
+Recover actividad y le exige al usuario que pulse el botón en el "OK" el
+botón. Ésta es la opción normal y puede de-seleccionarse de la opción.
+
+B) Recover requieren interacción del usuario llena si el vFPS ("Visual
+File pieces recovery") la pantalla se usa. Si usted usa el Trace método
+que los vFPS no quieren surja sin embargo. Por otra parte para eliminar
+esto usted debe excluir el método del vFPS de las opciones.
+
+7.5 mesas de FoxPro no-normales:
+==============================================
+Al intentar recuperar mesas de FoxPro no-normales con extensiones guste
+.SCX / .SCT, .PJX / .PJT, .DBC / .DCT / .DCX, usted necesita especificar
+nombres completos para el archivo del registro y el memorándum archivo.
+Por ejemplo:
+DO Recover WITH 'MyForm.scx', 'MyForm.sct'
+
+Hay un poco de consideraciones al reparar foxpro Visual (.DBC / .DCT)
+archivos del banco de datos. Recover no restauran desarreglado a las
+relaciones persistentes, la aprobación gobierna, etc. de VFP banco de datos
+archivos. Recover sólo restauran el los archivos y memorándums que
+todavía existen en el archivo corrupto para que pueda ser abierto y usó
+como cualquier otro archivo del banco de datos. Un registro o memorándum
+que son realmente extrañando del .DBC / .DCT corrupto no pueden
+recuperarse. Extrañando archivos o memorándums pueden romper el
+funcionamiento apropiado del banco de datos con "Invalid database..." y los
+mensajes del error similares. Esta consideración también sostenimientos
+para el proyecto, proteja, informe y archivos similares. Reparando su
+proyecto - y los tales otros archivos - no puede hacerlo utilizable a menos
+que todos los archivos eran recuperado perfectamente.
+
+7.6 Páginas del código y No-Ascii los carácteres:
+============================================================ 
+Algunas otras herramientas de apuro de archivo quieren "limpie" no-Ascii los carácteres de los campos y memorándums. Recover no cambian la marca de página de código en un archivo ni elimina o cambia no-Ascii los carácteres en memorándums o campos - aunque esto puede ser conveniente en algunos casos. Puede haber varios problemas serios eso puede ser causado por eso.
+
+1. Puede desarreglar carácteres del no-idioma despiertos usados en campos y memorándums (code pages).
+
+2. El segundo problema causó, es eliminación de palabras adulteradas en un memorándum llevando a integridad del memorándum falsa. Si adulteró word(s) el is(are) salió en un memorándum es probable que el usuario puede inspeccionar y puede hacer correcciones inteligentes convenientes - considerando que la tachadura de carácteres en texto puede alterar el significado 
+del texto y va no detectado.
+
+3. Incluso al desarrollar un app del texto, el diseñador puede decidir 
+para guardar carácteres binarios en memorándum y otros campos - qué entonces se eliminaría.
+
+7.7 variables y Nombres del Archivo Usados Por Recover:
+===================================================================== 
+Recover usos unos únicos variable / archivo nombres. Esté seguro su programa
+no use el mismo. Todo el resto de variables es privado dentro de
+Recover procedimientos.
+
+Nombre:               Propósito:
+-------------------------------------------
+RecoverM.DBF/FPT    él las tiendas se no-ajustaron memorándums encontrados por SPM.
+
+_Recover??          Nombres del banco de datos temporales.
+
+RecoverDef           Alias el nombre del archivo de la definición.
+RecovMsg             Actividad mensajes (para la realeza libre 
+                                         - el apoyo internacional.)
+R_TRACE_             First el nombre del campo SI Trace MÉTODO USARA.
+MemoTrace            que la variable Pública requirió SI Trace USARAN EN  MEMORANDUMS.
+Rtrace, MemoGet &    los nombres de la Función usaron SI Trace MÉTODO USARA.
+MemoPut
+
+7.8 Recover órdenes de SET_:
+========================== 
+Recover usa dos órdenes de SET_
+SET TALK OFF
+SET CPDIALOG OFF
+
+El primero previene escritura innecesaria de mensajes para proteger y
+reduciendo la velocidad el proceso de la recuperación, mientras el segundo
+previene VFP versión 5+ de hacer estallar a con el diálogo del codepage
+cada uno tiempo Recover abre un archivo.
+
+Por favor ajuste su software para compensar para esto si habría cause
+problemas.
+
+7.9 en caso del problemas / Problema Tiroteo
+=============================================================== 
+NOTA IMPORTANTE: La mayoría los problemas de mensaje de error se causan por incorrecto o definición anticuada (.def) el archivo.
+
+
+Problema / Error Mensaje - la Causa / Solución Probable
+-------------------------------------------------------
+Memoria insuficiente:  probablemente malo / anticuado * el archivo de .def.
+
+"visual File Pieces Salvage" la pantalla aparece:
+                     En MUY POCOS, "extremo" los casos de daño quieren los
+                     vFPS protegen método se requerido. Si esta pantalla
+                     surge, primero se ASEGURA QUE EL ARCHIVO de la
+                     DEFINICION ES CORRECTO Y al corriente - por otra parte
+                     pulse el botón en botón de la Cancelación y genere
+                     archivo de la definición correcto y entonces intenta
+                     de nuevo.
+
+"Definition file error" mensaje: Archivo de la definición probablemente incorrecto o extrañando.
+
+Variable not found:  probablemente una red o problema del camino
+                     - prueba que usa =RECOVER(fullpath (' filename.dbf'))
+
+Memorándums perdidos con Trace método:
+                     A) los memorándums simplemente estaban extrañando en el archivo del memorándum malo.
+                     B) el memorándum Trace códigos no se pusieron al día propiamente en su
+                        programa
+
+Los memorándums viejos re-aparecen con Trace recuperación:
+                     Trace código no fue puesto al día cuando el memorándum fue escrito o
+                     cambiado
+
+Recuperación parcialmente correcta y incorrecta:
+                     Probablemente Trace código no era incluido para este archivo y 
+                     se reparó con la "Ultima búsqueda de definición de campo" 
+                     método con opciones normales seleccionadas por defecto, pero 
+                     el archivo se fragmentó en la última parte. Usted puede 
+                     seleccione el método del vFPS de la lista de la opción para esto
+		     reparación del archivo.
+
+"Off screen" teclee mensajes del error:
+		     se desarrollaron Recover usando MS-Windows los conjuntos de caracteres pequeños.
+		     Usted puede necesitar poner Windows a los conjuntos de caracteres de la pantalla pequeños.
+
+"Not a database file:" después de la reparación:
+                     Esto ocurre si usted repara un archivo de Foxpro Visual
+		     con las ediciones de FPD/FPW/FPM de Recover y usted
+		     use el ' el botón de file' de Vista. El archivo reparado
+		     es un archivo de VisualFoxpro y no puede verse de
+		     FPD/FPW/FPM el software de FoxPro.
+
+================================================================ 
+
+Abri Technologies
+126 Blue Jay Rd.             Teléfono,: 605-224-0660
+Pierre, SD 57501 USA            E-Mail: service@abri.com

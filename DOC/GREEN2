@@ -1,0 +1,60 @@
+Robert Green wrote:
+> 
+> Paul,
+> 
+> Thanks for your email. Do you have any numbers for percentage of your
+> product's use by FoxPro version? 
+
+Here is a table of percentage of total sales per quarter for each 
+platform, total for all quarters (bottom) and Quarter percentage of 
+overall sales for each quarter (right side). This shows Recover 
+version 1.1 and 2.0 but not 1.0 which was only for FPW.
+
+Quarter  FPD FPW FPM VFP3 VFP5 VFP3&5  Q % of all Q's
+ 96-1     19  52   4   25    0    25     13
+ 96-2     20  44  18   18    0    18      8
+ 96-3     16  55   9   20    0    20     11
+ 96-4     29  38   5   21    7    28     10
+ 97-1     25  38  13   15    8    23     15
+ 97-2     22  35   8   11   24    35     16
+ 97-3     23  35   8    7   27    34     25
+
+    Percentage dist for all quarters
+          22  41   9   15   13    28
+
+> It is our impression that DBF corruption has decreased significantly
+> over time as FoxPro itself and networks in general have improved.
+> Do you share that opinion?
+
+From above sales figures and customer contact, I cannot share this 
+view. As you can see Recover utility VFP sales percentage is 
+significantly increasing over time, despite the fact that a huge 
+percentage of FoxPro copies sold was pre-VFP. I understand that FP 2.6 
+copies are still being sold.
+
+Please let me elaborate a little further.
+
+There is one difference which makes it appear that VFP has decreased 
+corruption. The most common DBF error in FPW/FPD 2.X was "Not a 
+database file" or "Memofile missing/invalid", due to incorrect record 
+or memo counter corruption in the file header. What VFP does is not to 
+generate the error when this corruption occurs but simply correct the 
+counter(s) and ignore the problem. Is that really a better "solution"? 
+It does not alert the user that they possibly lost records or memos 
+somewhere in order to take corrective steps.
+
+From current customer contact, corruption is often more serious - 
+garbage or offset records, messed up memo pointers, etc. With 
+humongous software and hardware today - where did Assembler go? - 
+glitches have greater probability, whatever the reason - network 
+software, FoxPro bugs, O/S bugs, bad network cables, VGA cards (they 
+can really mess up tables), power outages... 
+
+The 'Trace' technology I suggested in previous message is VERY 
+reliable in recovering records and memos and could seamlesly be built 
+right into Visual FoxPro. But what is as equally important is the 
+assurance and increased FoxPro reputation such a solution would 
+provide to the developer and end user.
+
+Again, I would be glad to get together with you or your staff to 
+discuss the 'Trace' technology.

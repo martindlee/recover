@@ -1,0 +1,68 @@
+************************* 01/02/07 21:35:51
+01/02/07 21:35:52 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:41:19
+01/02/07 21:41:34 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:42:10
+01/02/07 21:42:17 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:44:34
+01/02/07 21:44:38 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:46:26
+01/02/07 21:46:33 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:46:45
+01/02/07 21:46:45 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:47:08
+01/02/07 21:47:08 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:48:48
+01/02/07 21:48:50 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:52:40
+01/02/07 21:53:08 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 21:53:11
+01/02/07 21:53:14 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 22:13:15
+01/02/07 22:13:50 1 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 22:15:26
+01/02/07 22:15:26 1 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 22:15:33
+01/02/07 22:15:33 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/02/07 22:15:49
+01/02/07 22:15:49 Invalid Rebuild parameter(s). Quiting Rebuild.
+
+************************* 01/02/07 22:16:22
+01/02/07 22:16:22 3 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 01/03/07 10:15:01
+01/03/07 10:15:02 2 table/dbc/cdx file info records collected into Rebuild table.
+
+************************* 10/04/11 11:10:59
+10/04/11 11:10:59 1 table/dbc/cdx file info records added to Rebuild table.
+
+************************* 10/04/11 11:12:38
+10/04/11 11:12:38 1 table/dbc/cdx file info records added to Rebuild table.
+
+************************* 10/04/11 11:14:39
+10/04/11 11:14:50 Data file error scanning completed. No errors found.
+
+************************* 10/04/11 11:17:54
+10/04/11 11:18:01 IndexFile HISTORY.CDX error fixed!
+10/04/11 11:18:03 Data file error scanning completed. 1 files repaired.
+
+************************* 10/04/11 11:18:18
+10/04/11 11:18:26 IndexFile HISTORY.CDX error fixed!
+10/04/11 11:18:31 Data file error scanning completed. 1 files repaired.
+
+************************* 10/04/11 11:21:27
+10/04/11 11:21:33 IndexFile HISTORY.CDX error fixed!
+10/04/11 11:21:35 Data file error scanning completed. 1 files repaired.

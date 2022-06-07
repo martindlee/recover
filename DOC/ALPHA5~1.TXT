@@ -1,0 +1,17 @@
+alpha 5 database files: .DBF/.FPT
+
+similar to FoxPro files - Except:
+
+1. DBF header field definitions: 
+omits byte 12-15 field displacement in record value
+
+2. uses '-' for delete flag.
+
+3. memos in FPT file:
+
+a) 1st 4 bytes indicate size of memo in mBlockSize ( eg 00 00 00 04
+= 04 * 64 memo size)
+
+b) 2nd 4 bytes indicate memo text upper limit in 16 byte pages,
+terminated by CHR(0) bytes. The remaining bytes used for program
+code.

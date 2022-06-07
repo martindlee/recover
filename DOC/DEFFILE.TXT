@@ -1,0 +1,56 @@
+                           Recover Utility.
+             Structure Definition file (.def file) Contents
+             ==============================================
+
+The .def file is simply another FP2.X database format file and is made up 
+of several (character) fields in a record. Each record defines the 
+properties of the field of the corresponding database file. The last record 
+contains additional database file header information
+
+The name and content of each field is:
+
+Field_name: (C10)
+  The name of the field (upper case - except the "_NullFlags" field name).
+Type:(C4)
+  Character position / meaning:
+  1) Upper case character representing the type of the field.
+  2) space
+  3) This is used by Visual FoxPro tables and has additive Binary values
+     1, 2 or 4 indicating whether the field: a) is a system field
+     (not visible - like "_NullFlags") b) can store null values and
+     c) is a binary type (for memo or character type).
+Width:(C5)
+  Field width.
+Dec:(C10)
+  The number of decimals used in a numeric field.
+  This is also used for character fields - if it has the characters 'TEXT'
+  it indicates that the character field is purely text type and should not
+  contain any binary characters - usefull for detecting binary garbage
+  character corruption in such fields.
+FieldAlias:(C20)
+  This field not used in version 2.0.
+  In version 1.1 it was used for long field names of VFP or longer names
+  to logically represent field names in FP2.X.
+
+The last line defines further properties of the file.
+Field_Name: 
+  The first four characters are either DB3M, FP2X or VFPX indicating
+  dBaseIII/Clipper type file with memos, a FoxPro 2.X file
+  or Visual FoxPro file. Next 2 bytes are blank.
+  The 6th (binary) character has combination of 1,2 and 4 bit (additive)
+  values indicating whether the file has and attached .CDX file, a 
+  related memo file or/and is a VFP database file respectively.
+  Next 3 characters have the database code page value.
+Width:
+  The memo blocksize in byte count. ('64' is the standard block size).
+Dec:
+  The first record position in the file. Note that file positions start
+  with the byte 0. For a FP2.X file this is usually -
+  32 + 1 + NumberOfFields x 32.
+  However, dBaseIII and Clipper created files without memos have
+  same structure as FP2.X but they add another byte displacement
+  to the first record position - so watch out.
+
+It is recommended that you use GenDef utility for generating the .def
+files, since some of the above data is not easily determined and if placed
+in wrong position could result in erroneous file recovery.

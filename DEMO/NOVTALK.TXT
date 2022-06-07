@@ -1,0 +1,153 @@
+show:
+duplicate vendorname in trx.dbf
+51 % bad memo pointers - cred.dbf => need to scan often
+decreasing head record counter
+
+
+INTRO:
+
+Thanks , esp to Arden Weiss (bought a copy) & David Crooks.
+
+Hope you will find the information here useful.
+
+Glad that our Recover utility was given top rating in FoxPro Advisor
+Sep. issue - sure helped sales.
+
+How I got into file repair. Pawnshop inventory control software ...
+V1.0 (source), V1.1, and just recently V2.0 (what users of 1.1 asked
+for + other improvements, esp error detection).
+
+Explain/Show diagram and then Fig1/2 - ignore notation.
+
+Illustrate various memo pointer errors.
+
+Repairing data files is not a simple task programmatically, esp.
+restoring the data region of record & memo files. The the attempt of
+Recover is Automated file repair with none or minimal user
+interaction.
+
+Recover comes in two forms: single user license with a screen
+interface for ocasional file repair - $70 and Royalty Free license
+version that is called with parameters and cand be built into
+your app w/o end user interaction. Here we use single v for demo.
+
+Recover does also some limited repair on Clipper and AlphaFive files.
+
+Mention Another excellent file repair utility is dSalvage , but more
+on the manual side - includes several editors and requires more time
+learning by user. It also doesn't handle VFP files.
+
+Recover has excellent error detection capabilities.
+
+For data salvage Recover uses several proprietory methods (algorithms)
+for repairing the data region.
+
+LFS - usefull when the whole file is displaced.
+TRACE - extremely reliable and fast recovery of records and memos -
+but requires some extra setup in your source code. (patent pending).
+SPM - useful in some extreme cases of memo file corruption.
+
+And of course other repair functions: header repairs & removal of
+invalid memo pointers.
+
+
+FILE CORRUPTION EXAMPLES:
+
+"Not a Table/DBF file!"
+
+Probably most common problem & usually can be repaired quickly.
+
+Due to too large a record counter - counter incremented but actual
+record not written to file - power failure or whatever.
+
+** View - NOTDBF.DBF first in FPW then in VFP (error ignored, GOOD?)
+
+
+** View - MISREC.DBF in FPW & VFP
+       50 records?
+       Fix => 100 records. How come? => record counter too low.
+       Note that neither FPW2.6 nor VFP generated an error.
+       Insidious problem. Invisible. The invisible records will be
+       overwritten (destroyed) on an append or SQL insert.
+       
+       => Routine (weekly/daily) error detection scanning important
+       for file integrity.
+
+** View - SAMEFLD.DBF - real oddball case from one client. 
+
+Repair.
+
+Unexpected problem. => Its like Murphy's law - something will go wrong
+eventually.
+
+** View - RECOFFS.DBF
+
+Not common but happens - had one example from client with 2 different
+offsets.
+
+Has TRACE code built in it. (field R_TRACE_)
+Repair 
+& Repair again w/o TRACE option. extreme cases.
+
+
+** View - INVSPM.DBF
+
+Two halves of the FPT file inverted deliberately. All pointer bad due to
+such displacement. Also works in cases of complete file offset (had a
+case).
+
+SPM works in such cases - but limited to < 5000 memos. Otherwise to long
+time - SPM (Statistical Patern Matching) - brief expl.
+
+** View - POINTER.DBF - shows standard memo pointer errors
+and removal of structurally invalid memo pointers.
+
+Most memos/gens ok but some memo pointer corruption:
+
+1) rec1/8 crosslink.,
+2) rec 17 invalid memo 
+3) rec 15 incorrect memo.
+
+**** Try to pack. ****
+
+Repair. Can remove structuraly invalid pointers to allow
+packing of file.
+
+Note memo pointer errors build up:
+Memo pointer errors buildup => Routine (weekly/daily) error detection
+scanning important for file integrity. A few recent memo errors
+easy to take care of - but if builds up over time untill a big
+mess => a lot of older memo info lost.
+
+Had one recent case where 51% of memo pointers of a larger file
+were incorrect. The memo pointer errors were building up un-noticed
+over time until it got real bad and too late.
+
+** View - TRACEMEM.DBF
+
+This file has TRACE coding -
+Other methods will only remove the bad links. - try pack.
+
+Repair.
+
+Only the TRACE method will correctly detect memo errors and restore memo
+pointers - including #3 - incorrect memo.
+
+Nothing else can detect case #3 and repair it. Structurally it is a healthy
+memo but it in fact is the wrong one.
+
+The TRACE method could be built invisibly into VFP for added data
+protection. i.e. no trace codes to maintain by app. Very little
+modification to VFP would be necessary.
+VFP already includes an invisible system field _NullFlags for keeping
+track of fields with NULLs.
+
+I have tried to contact individuals at FoxPro - including Robert Green
+in a very brief Email exchange - but hard to get their attention.
+
+
+PREVENTION:
+
+- Flush
+- UPS
+- Watch out for browse alias affinity

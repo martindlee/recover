@@ -1,0 +1,41 @@
+Visual Foxpro and data protection.
+
+Robert,
+
+DBF corruption and lack of reliable recovery is a vexing 
+problem to a lot of FoxPro developers and does not help 
+FoxPro reputation. I am writing to suggest a reliable method 
+of DBF/FPT file repair/recovery for inclusion in future 
+releases of Visual FoxPro.
+
+As you may know, our 'Recover' Fox file repair utility got 
+top ratings in September issue of FoxPro Advisor. THIS IS 
+NOT A PROMOTIONAL ATTEMPT FOR OUR SOFTWARE.
+
+Recover uses several methods for repairing files. But one 
+method in particular, the 'Trace coding' algorithm, is VERY 
+reliable in restoring records and memos accurately and is 
+currently patent pending. However, it requires extra 
+preparatory work on part of the developer:
+1) extra record field for the 'Trace codes'
+2) extra memo trace code at beginning of each memo and
+3) associated program modification in FoxPro apps.
+The problem is eliminated and the method works best if it 
+was invisibly included as part of Visual Foxpro - perhaps 
+as an optional "SET DATAPROTECTION TO" command. Visual 
+Foxpro already has the "_NullFlags" invisible field in VFP 
+tables. The extra Trace code field could be treated the same 
+way and the memo codes could also be invisible.
+
+Including such a reliable data protection feature would 
+certainly improve Visual FoxPro reputation.
+
+If you find this of interest, I would be glad to arrange a 
+demo and discuss any technical details at your or your 
+staff's convenience without obligation.
+
+Paul Lee
+HC 62, Box 100K
+Great Cacapon, WV 25422
+Phone: 304-947-7129, Fax: 304-947-7628
+Email: plee@abri.com 

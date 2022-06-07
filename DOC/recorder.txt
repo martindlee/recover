@@ -1,0 +1,48 @@
+     Recover 4.0b Order Form/Information   (http://www.abri.com/)
+---------------------------------------------------------------------
+Date:_________________
+Item           [qty]                        US funds ea       Amount
+----------------------------------------------------------------------
+               FPD26  FPW26  VFP5-9
+Single User     [ ]    [ ]    [ ]            $86 ($43 2nd+) $_________
+Royalty Free    [ ]    [ ]    [ ]           $260($130 2nd+) $_________
+
+Printed manual in lose leaf binder [ ]           $ 25ea     $_________
+(Sent by postal mail)
+                                       Processing charge    $  3.00
+
+OUTSIDE N. AMERICA add: $1 OR add $8 with printed manual    $_________
+  Non pre-paid P.O. processing fee (*see below)   $ 10.00   $_________
+                                                 TOTAL      $_________
+----------------------------------------------------------------------
+Send by: Email           [ ] ____________________________________
+         Regular Mail    [ ] (3.5" Diskette)
+----------------------------------------------------------------------
+Address: (where to send invoice/receipt)
+
+    Name_______________________________________________________
+
+ Company_______________________________________________________
+
+ Address_______________________________________________________
+
+        _______________________________________________________
+         (City,State/Prov, Country)
+
+ Phone  ________________________ E-Mail:________________________
+                                        (if not given above)
+Payment by:  Check[ ] MoneyOrder[ ] P.O. [ ](*see below)
+           VISA[ ] MasterCard[ ] AmericanExpress[ ]
+
+CardNumber____________________________  ExpDate______
+
+NameOnCard____________________________  Signature____________________
+----------------------------------------------------------------------
+You can Mail/E-Mail/Phone/Fax order form with payment to:
+Abri Technologies                       Phone: 605-224-0660
+126 Blue Jay Rd.                        Faks:  815-642-0943
+Pierre, SD 57501 USA
+
+NOTES: ** No refunds after software shipped. **
+* Non-prepaid purchase orders accepted only from governments and major
+non-profit organizations with $10 additional P.O. processing fee.

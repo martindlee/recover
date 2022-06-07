@@ -1,0 +1,1 @@
+del ..\reg\temp < ..\y

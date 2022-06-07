@@ -1,0 +1,34 @@
+****************************
+C:\RECOV40\SOURCE\PRAT Recover report - 02/25/08 15:15:17
+
+ ** DBF file: 
+ DBF header OK!  
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\SOURCE\PRAT Recover report - 02/25/08 15:15:40
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ MemoHeader Error(s)!MemoHeader repaired!
+
+0.09 seconds.
+****************************
+C:\RECOV40\SOURCE\PRAT Recover report - 02/25/08 15:15:42
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.08 seconds.
+****************************
+C:\RECOV40\SOURCE\QUOTE Recover report - 03/25/11 16:03:10
+
+ ** DBF file: 
+ File EOF mark adjusted! (VFP8+)
+** Memofile: 
+ Memo file counter adjusted!
+
+0.02 seconds.

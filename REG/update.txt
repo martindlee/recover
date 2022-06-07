@@ -1,0 +1,189 @@
+This file contains
+1) current revision information
+2) Recover revision history near end.
+Please read "manual.txt" file reflecting latest changes.
+
+====================== Recover Revisions =================================
+Version 4.0b
+
+10/31/06 Recover: fixed bug for 2GB memo file repair.
+09/03/06 Rebuild: improve error messages. Remove "cRelDir not found" bug.
+09/03/06 Rebuild: fixed relative directory bug.
+08/09/06 Rebuild: fixed *filelist* absolute file addressing reference bug
+08/03/06 Rebuild: Changed CLOSE ALL to CLOSE DATA ALL in Rebuild.
+07/19/06 Removed bug when collecting structures with relative directory references
+06/28/06 New Rebuild features: Add *FILELIST* *EXCLUDELIST* *ADD* *DELETE* *REFRESH* parameters,
+         ERRORSCAN parameter changed to *ERRORSCAN*
+02/10/06 Correct for some rare lower case field names in non-fox made tables
+10/26/05 Correct Rebuild memoblock size to requested instead of default - when updating
+         Minor Gendef correction - FP2X upper case field names
+08/26/05 Correct record error scanning for Varchar types w/o NULL property
+08/09/05 Correct record error scanning bug for Varchar and blob field types.
+04/28/05 Correct rebuild alias change problem for alias reference in CDX files
+         Correct Recover alias change problem....., improve dBASE III memo file error scan/fix
+04/14/05 Correct rebuild utility 'not checking/correcting CDX link' bug.
+03/16/05 Version 4.0b release - added 1) VFP9 Varchar and Blob field types; trimming 2GB+ .FPT 
+         files; 2) incompatibility warning between file type and current Fox version in single
+         user editions.
+
+Version 4.0
+
+01/06/05 Corrected Rebuild copy table data for tables structure changes
+09/13/04 Corrected Rebuild autoinc file reconstruction.
+09/13/04 Corrected Rebuild confusion between .def file and similar shorter name .def files
+09/06/04 Corrected Rebuild missing .CDX file restoration bug.
+09/01/04 Corrected invalid .def file warning process.
+08/25/04 Added CDX file error 1707 (missing CDX file) to Rebuild CDX repair list.
+04/13/04 Corrected Rebuild bug to handle complex ..\..\ type directories and floating
+         .def files removal.
+03/10/04 Corrected "Variable MemoLen not found" bug when save extraneous option used.
+         Modified royalty free VFP edition Rebuild utility so it can be used in end user restricted
+         access directories.
+08/31/03 Corrected GenDef bug for some autoincrement and R_TRACE_ field adding cases.
+08/28/03 Corrected message when Recover fixed file w/o .def - but gave "Def file not found" message.
+07-30-03 Version 4.0 release - New Rebuild utility (RF), VFP8+ features, Improved Browse utility
+
+Version 3.0
+
+07/17/03 Non-major corrections: accept upper DBC pathname, BrowsFil bug 4 empty file,
+         extraneous memo storage.
+12-08-02 .DE_ files for DBC links not generated.
+08-12-02 Correct bug for memo extraction with no .def file.
+04-12-02 Include header check/repair for too low first record position value.
+04-01-02 Field bug scanning included in browse viewing/edit mode.
+---- some missing notes here ---
+12-20-01 Allow minor fieldname extra chars after fieldname chr(0) for Fox 1.x files
+12-11-01 Fix "Variable memolen not found" bug from prev release.
+11-30-01 Allow all extraneous memo extraction option (w/o SPM).
+11-21-01 Allow memo blocksizes of 2 to 32 with gendef message warning.
+10-31-01 Fix text fields binary detection bug. Improve message format.
+06-25-01 Fix partial duplicate field name search bug for LFoffset (Not a problem for most tables).
+05-31-01 Correct Gendef for DBASE III+/Clipper field type and Recover for clipper memo scan.
+02-13-01 Correct Gendef bug when VFP "SET NULL ON" is enabled.
+02-08-01 Correct large number error test, add save SET PROC... environment
+01-31-01 Additional header fields/.def cross-checking.
+11-12-00 Oversize table repair included in main Recover(s).app - (eliminates SPLIT.APP)
+10-29-00 Version 3.0 release - with oversize table repair (split) routine.
+
+Version 2.0
+
+09-06-00 Corrected partial last record bug and fpw/fpd vFPS Foxbug problem
+06-05-00 Added duplicate-field-names corruption detection/repair
+04-04-00 Memosalvage index bug correction.
+02-24-00 Allow for some foreign field name characters
+10-27-99 Minor header flag correction for no .def file
+07-28-99 Corrected header writing for 0 length memo files
+05-31-99 Various minor corrections (date not accurate)
+11-24-98 Corrected +1 return value to -10 when vFPS method needed and turned off.
+08-16-98 Allow force vFPS when Header/RecTrace/LastField repair methods turned off.
+         Set SPM method as not default.
+05-27-98 Allow DBf head fix only. Improved removing FP2X strange pointers.
+05-18-98 Improved dBase3+/Alpha5 memo pointer repair.
+05-12-98 Corrected missing variable errors.
+04-17-98 Corrected Gendef R_Trace_ field generation for special case.
+03-26-98 Improved .FPT offset detection/repair
+03-18-98 Corrected Recover.app return value for vFPS
+02-24-98 Minor bugs.
+02-11-98 Corrected GenDef Rtrace/VFP problem
+02-10-98 Save/restore original alias() on Recover exit.
+01-29-98 Adjusted for unusual case of ivalid real memos below byte 512
+01-19-98 Corrected GenDef Rtrace/VFP problem 
+12-30-97 Corrected exclusive use test.
+12-01-97 Modified Recover to repair simple record counter without .DEF file.
+11-23-97 Corrected:
+         * possible i/o missing CD-ROM error for FPW/FPD
+         * zero length file if switching from LFS to vFPS case
+11-13-97 Corrected for unusual case of crosslinked 0 length memos
+11-10-97 Corrected "Data type mismatch" when .def file error.
+11-09-97 Restore ON ERROR condition and correct relative path problem.
+11-04-97 Corrected "Variable not found!" bug.
+10-31-97 * Added repair of Alpha Five files.
+         * Allowed record salvage methods for Clipper/dBaseIII+ files
+         * Corrected "Invalid Set.." error for FoxPro 2.5 use
+10-29-97 * Added recognition of _DBASELOCK field for old dBase files
+         * Turn off CPDIALOG in GenDef.app
+10-09-97 Non-major vFPS method related corrections.
+10-07-97 Corrected Recover bug for VFP NullFlags system field.
+09-23-97 corrected memo pointer repair bug for < 90% bad pointer files
+08-24-97 * removed record viewer bug in vFPS
+         * corrected Recover return values. Changed -10 to
+	   'Record file not recoveed' and added -11 for 'Memo
+	   not recovered'.
+	 * corrected restoration of prior SET environments.
+08-20-97 removed minor bugs
+08-19-97 Version 2.0 released
+
+Version 1.1
+08-06-97 Improved memo recovery speed
+05-20-97 Corrected bug for some memo files offsets.
+05-07-97 Corrected <Instructions/Help> button action.
+04-14-97 Removed false next-block counter correction for empty memos
+           with non-std blocksize and no .def file.
+02-28-97 Removed search and last memosize bug in Trace and improved
+           speed for large memo files.
+02-04-97 Removed bug: to prevent Browse Screen method when Nulls
+           in VFP exist.
+	 Removed bug: incorrect header error detection in VFP when
+	   EOF mark is not present.
+01-19-97 corrected trace memo salvage bug.
+11-20-96 changed fullpath(DBFname) from DOS FoxPro path.
+11-17-96 * changed recxxx11.fxp library to recover.app
+           to simplify inclusion into app's
+	 * improved detection/repair sequence - no FPT repair w/o DBF ok.
+10-17-96 * bug - when traces added GenDef now restores record Delete flags.
+	 * Recover bug due to last mod - in some cases it detected memo
+	   errors but did recover memos.
+10-02-96 * Removed extra POP KEY statement
+         * added different numeric error code return values to Recover.
+08-27-96 Removed ignorable "Invalid subscript" bug for files w/o memos.
+08-19-96 * Added default memo pointer checking.
+         * Added default record checking via delete flag.
+         * Improved error trap for "*.DBF file in use".
+08-05-96 * Added trace method data region corruption checking
+           and improved trace method restoring data restoring.
+         * Removed Gendef bug which omitted the .DE_ file having
+	   DBC file path - for single user version.
+	 * Removed Gendef bug calculating first record position.
+	   Could have error in some .def cases.
+06-01-96 * Improved memo recovery speed.
+         * GetBaDef.app utility for helping to make a def file from
+	   corrupt .DBF if a backup is not available. Download from
+	   ftp://abri.com/getbadef.zip.
+05-06-96 * Memo cross/links detection added - reported to Recover.Rep.
+           Cross links separated to enable memo packing in some cases.
+         * Missing memos pointed to in DBF now reported in Recover.Rep.
+         * Added "SaveOld data file" option - saves original data file(s)
+	   as RecovOld.dbf/fpt after reconstruction of DBF/FPT files.
+         * Expanded error messages to single user screen when viewing
+	   bad file.
+	 * Corrected .CDX file indicator flag.
+04-30-96 * Improved DBF header error detection.
+	 * Faster memo recovery in most cases
+	 * Recover now repairs "Clipper/FoxBase/DataBaseIII PLUS" files 
+	   correctly.
+	   Limitations: 1) only simple .DBT memo file header repair 
+	   and elimination of illegal DBF memo pointers is done.
+	   2) Rtace and memo salvage options/methods not allowed with
+	   .DBT files.
+	 * RecoverM.dbf changes: 
+	   1) This revision resolves possible problem of accessing RecoverM 
+	   created by Visual Foxpro but updated from FP2.x platforms.
+	   2) "DBF_record" field has been added to indicate possible 
+	   records that the extra memos could belong to.
+	 * Alias DEF changed to RecoverDef.
+         * removed database path file "..DE_" extension bug for single
+	   user edition.
+         * corrected codepage recording by GenDef for FPD/FPW/FPM editions.
+03-31-96 * Improved memo recovery - faster removal of invalid memo
+           pointers (SPM).
+         * Found/changed some public variables to private.
+         * Removed memo option disabling bug.
+         * Changed notifications from wait windows to central window.
+03-20-96 * Corrected bug - error when attempting to fix empty file with
+           last field def. search method.
+03-18-96 * Added option to change structure defition file extension in case
+           .DEF is used by customer.
+01-02-96 * First release of Version 1.1
+
+Version 1.0
+05-26-95 * First release of Version 1.0

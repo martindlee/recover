@@ -1,0 +1,16 @@
+Compiling C:\RECOV40\SOURCE\GENDEF.PRG
+OPEN DATABASE (DBCname) EXCLUSIVE
+Error in line 158: Unrecognized command verb.
+FSEEK(FileHandle, -32, 1)
+Error in line 221: Unrecognized command verb.
+FWRITE(FileHandle, UPPER(sField_Name))
+Error in line 222: Unrecognized command verb.
+RestoreFSEEK(FileHandle, OldSeekPos)
+Error in line 223: Unrecognized command verb.
+ALTER TABLE (DBFfl) ADD R_TRACE_ C(16)
+Error in line 353: Unrecognized command verb.
+ALTER TABLE (DBFfl) ADD R_TRACE_ C(7)
+Error in line 355: Unrecognized command verb.
+OPEN DATABASE (DBCname)
+Error in line 616: Unrecognized command verb.
+

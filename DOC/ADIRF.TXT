@@ -1,0 +1,129 @@
+From - Tue Aug 19 13:20:30 1997
+Path: news.texas.net!nntp.texas.net!ais.net!newsfeed.direct.ca!newsfeed.dacom.co.kr!newsfeed.kornet.nm.kr!news-stock.gsl.net!news-fw.gsl.net!gsl-penn-ns.gsl.net!news.gsl.net!gip.net!news.belnet.be!krypton.inbe.net!INbe.net!stns.news.pipex.net!warm.news.pipex.net!pipex!tank.news.pipex.net!pipex!laura.pcug.co.uk!termbliss!crippin
+Newsgroups: comp.databases.xbase.fox
+Message-ID: <128@termbliss.win-uk.net>
+Reply-To: crippin@termbliss.win-uk.net (Christopher Pinder)
+From: crippin@termbliss.win-uk.net (Christopher Pinder)
+Date: Tue, 19 Aug 1997 13:45:10 GMT
+Subject: RE: Not a database file (dos 2.6) - Try this
+Lines: 108
+Xref: news.texas.net comp.databases.xbase.fox:27928
+
+This code was posted to me about a year ago from a guy whose handle was tigger
+
+It was posted up to the newsgroup with a little notice 'bout public domain ---
+
+as is ---- and all the usual stuff. 
+
+I can claim no authors' rights, but he did 'give it up' to the net and as I
+
+still have it (and still use it), you might like to try it...
+
+This does NOT FIX VFP files (Be nice is someone would re-write it ti do so though)
+
+
+Below here is fpd code .........
+
+* ==========================================================
+
+set exclusive on
+set safety off
+
+
+do fix_dbf
+
+
+Procedure fix_dbf    
+dimension l1dbfs(1)
+=adir(l1dbfs,'.\*.dbf')
+l1err=.f.
+clear
+? 'Checking Database Files'
+?
+if alen(l1dbfs)<>1
+  for l1dbf=1 to alen(l1dbfs)/5
+    l1file=l1dbfs(l1dbf,1)
+    ? right('          '+l1file,12)+'    ['
+    store fopen(l1file,2) to l1mess
+    store fseek(l1mess, 0, 2) to l1ndx_sz
+    =fseek(l1mess,0)
+    l1str=fread(l1mess,4)
+    l1ass=readx(4)
+    l1head=readx(2)
+    l1rec=readx(2)
+    l1actual=(l1ndx_sz-(l1head+1))/l1rec
+    l1actual=iif(l1ndx_sz=l1head,0,l1actual)
+    if l1actual<>l1ass
+      l1err=.t.
+      ?? 'X]'
+      =fseek(l1mess,0)
+      l1str=fread(l1mess,4)
+      l1replace=right('00000000'+hex(l1actual),8)
+      l1tmp=''
+      for l1loop=1 to 4
+        l1tmp=chr(dec(substr(l1replace,l1loop*2-1,2)))+l1tmp
+      endfor
+      =fwrite(l1mess,l1tmp)
+    else
+      ?? chr(251)+']'
+    endif
+    = fclose(l1mess)
+  endfor
+endif
+?
+? iif(l1err,'Errors Found!  Re-Indexing','All Databases appear okay')
+        set talk on
+ set exclusive on
+  for l1dbf=1 to alen(l1dbfs)/5
+    use l1dbfs(l1dbf,1)
+    reindex
+    use
+    next 
+return
+
+Function Readx
+parameter l1len
+l1str=fread(l1mess,l1len)
+l1tmp=''
+for l1loop=1 to l1len
+  l1tmp=right('00'+hex(asc(substr(l1str,l1loop,1))),2)+l1tmp
+endfor
+l1value=dec(l1tmp)
+return l1value
+
+Function Hex
+parameters l1int
+private l1loop,l1hex,l1str
+l1str='0123456789ABCDEF'
+l1hex=''
+for l1loop=7 to 0 step -1
+  l1part=int(l1int/(16^l1loop))
+  l1hex=l1hex+substr(l1str,l1part+1,1)
+  l1int=l1int-l1part*(16^l1loop)
+endfor
+do while left(l1hex,1)='0'.and.len(l1hex)>1
+  l1hex=substr(l1hex,2)
+enddo
+return l1hex
+
+Function Dec
+parameters l1hex
+private l1loop,l1int,l1str,l1ctr
+l1str='0123456789ABCDEF'
+l1int=0
+for l1loop=len(l1hex)-1 to 0 step -1
+  l1int=l1int+(16^l1loop)*(at(substr(l1hex,len(l1hex)-l1loop,1),l1str)-1)
+endfor
+return l1int
+
+
+
+---------------------------------------------------------
+Chris Pinder.crippin@termbliss.win-uk.net|crippin@msn.com
+Terminal Bliss,26 Crompton Avenue,Bidford on Avon,B50 4DG
+U.K. - Voice (44) 1789 773955 .....
+---------------------------------------------------------
+
+
+
+

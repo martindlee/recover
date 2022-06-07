@@ -1,0 +1,13 @@
+* generates fpw RF package
+run ..\delreg
+modify project recover
+do ..\fixdrive with 'recover.app'
+modify project gendef
+do ..\fixdrive with 'gendef.app'
+Set Safety off
+copy file ..\execheck\recovlck.exe to ..\reg\temp\recovlck.exe
+set safety on
+run ..\makeRF.bat fpw
+erase recover.app
+erase gendef.app
+clear

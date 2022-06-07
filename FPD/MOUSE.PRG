@@ -1,0 +1,1 @@
+On key label mouse wait window str(mrow())+str(mcol())

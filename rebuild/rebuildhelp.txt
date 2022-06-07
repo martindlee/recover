@@ -1,0 +1,508 @@
+Abri Technologies, Rebuild utility Instructions:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+NOTE: Rebuild and NewRebuild tables are exactly same structure and you
+can copy Rebuild.dbf/.fpt to Rebuild.dbf/.fpt when needed.
+
+The instructions are divided into following sections:
+
+1.0 - COPYRIGHT & LICENSE NOTICE
+2.0 - REBUILD PURPOSE
+3.0 - HOW IT WORKS
+   3.1 How to use it - Rebuild parameters
+   3.2 Executing Rebuild from Non-Foxpro applications
+4.0 - MORE DETAILS
+   4.1 Rebuild Parameter and field codes summary
+   4.2 Rebuild Return Values
+   4.3 Precautions, suggestions and further info
+5.0 - ADVANCED FEATURES
+   5.1 NewRebuild PreExec and PostExec optional routines
+   5.2 'REINDEX', 'REBUILDINDEX' in Codes field
+   5.3 Multiple table directories
+   5.4 Recover and Gendef option codes
+6.0 - OTHER IMPORTANT NOTES
+
+1.0 COPYRIGHT & LICENSE NOTICE
+==============================
+
+Copyright 2003, Abri Technologies, www.abri.com
+
+This utility licensed for use only with Abri Technologies royalty free
+"Recover" software, cannot be sold or given away or its methods
+disclosed to other parties in original or in a modified form.
+Improvement suggestions for future editions are welcome.
+
+2.0 REBUILD PURPOSE
+===================
+
+What it is:
+-----------
+
+Rebuild is a compact utility of only 3 files (no more .def files
+floating around). It is designed to be distributed with your enduser
+application can perform the following tasks:
+
+1) INITIAL TABLE STRUCTURE COLLECTION REQUIRED: Use Rebuild for
+initial collection of valid (non-corrupt) table, database container
+and index file (cdx) file structure information into Rebuild table for
+later file error-scanning/repair or enduser updates.
+
+2) ERORR-SCAN REPAIR: Error-Scans/Repairs .dbf/.fpt files, .cdx files
+and database container and optionally re-indexes or rebuilds .CDX
+files.
+
+3) UPDATING ENDUSER TABLE STRUCTURES: If new table/DBC/cdx structure
+information is collected into the "NewRebuild.dbf/.fpt" table, the
+table can be distributed to endusers and Rebuild will update
+table/DBC/cdx structures using structure information in original
+Rebuild.dbf/.fpt and new NewRebuild.dbf/.fpt tables. Note: field
+renaming may not work and is handled as in section 5.1.
+
+What it is not:
+---------------
+
+Rebuild is not a replacement for Recover and uses Recover for
+ErrorScanning/Repairing .dbf/.fpt files. It is not designed for
+occasional specific file repair.
+
+3.0 HOW IT WORKS
+================
+
+3.1) How to use it
+------------------
+
+The action taken by rebuild depend on parameters used and which
+of the Rebuild and/or NewRebuild tables exist in current directory
+when you execute Rebuild.
+
+NOTE: The included RebProject form code may assist you to generate
+file structure information for enduser or your local tables with
+directory parameter(s), *FILELIST* or *EXCLUDELIST* parameters only.
+Please read the rebproject-readme.txt file for that.
+
+HOW TO:
+
+3.1.1) Collect initial enduser file structure info into Rebuild.dbf/.fpt table:
+-------------------------------------------------------------------------------
+(NewRebuild.dbf/.fpt should not present in same directory)
+
+PARAMETERS USED:
+
+Parameters take the following different optional formats:
+
+Directory1, Directory2, Directory3, Directory4
+*FILELIST*, FileNameListTextFile
+*EXCLUDELIST*, ExcludeFileNameListFromDirectoryTextFile
+*ADD* or *REFRESH* or *DELETE*, DBF-DBC_FileName
+
+3.1.1.1) Directory1, Directory2, Directory3, Directory4
+
+Up to four parameters naming directories where all the table/dbc/cdx
+info will be collected from.
+
+The following will collect data file structures in the endusers
+directories c:\CommonData and ..\data\AccountingData relative
+to default directory
+
+=Rebuild("c:\CommonData", "..\data\AccountingData")
+
+The following will collect data file structures in current directory:
+
+=Rebuild("")
+or
+=Rebuild(".")
+
+
+3.1.1.2) *FILELIST* or *EXCLUDELIST*, FileNameList
+
+When Rebuild sees *FILELIST* as first parameter it will look for the
+file FileNameList in which is a list of .dbf and .dbc files to collect
+structure information into Rebuild.dbf/.fpt table. The FileNameList is
+the name of a simple text file with one .dbf or one .dbc filename per
+line.
+
+For example the file Filelist.txt would contain the filelist as
+
+act.dbc
+account.dbf
+employees.dbf
+ledger.dbf
+
+*EXCLUDELIST* works the same way except it is a list of files
+to exclude from CURRENT directory.
+
+3.1.1.3) *ADD* or *REFRESH* or *DELETE*, DBF-DBC_FileName
+
+The first parameter *ADD* or *REFRESH* or *DELETE*
+will add or refresh or delete the DBF-DBC_FileName
+in the Rebuild.dbf/.fpt list.
+
+For example
+
+=Rebuild("*ADD*", "account2.dbf")
+
+will add structure information to Rebuild.dbf/.fpt.
+
+Note: With *ADD*, if a dbf or dbc file is already in Rebuild.dbf/.fpt
+it will be "refreshed". With *REFRESH* if a file is not already in
+Rebuild.dbf/.fpt it will be added to the list.
+
+3.1.2) ErrorScan end user tables/indexes/dbc's:
+-----------------------------------------------
+(NewRebuild.dbf/.fpt should not be present in same directory)
+
+ErroScanning/repairs require that correct table/dbc info is already
+collected in Rebuild.dbf/.fpt and the table is present in endusers
+directory. Typically you would have a populated Rebuild.dbf/.fpt
+sitting in endusers directory BEFORE corruption occurs.
+
+For erroscan/repair simply execute Rebuild without parameters.
+
+(Note: You can also force an errorscan regardless even if both Rebuild and
+NewRebuild tables are present with the "ErrorScan" parameter as
+=Rebuild("*ERRORSCAN*")
+
+See section x for Rebuild Return values.
+
+3.1.3) Collecting new data file structure info for enduser updating:
+--------------------------------------------------------------------
+
+You can collect new table structure or dbc structure info into
+the table NewRebuild.dbf/.fpt and send the table to enduser so
+that enduser table structure will be updated.
+
+You can do that the same way you did in Section 3.1.1 above.
+
+In your development environment, make sure that NewRebuild table
+exists WITHOUT THE REBUILD TABLE IN CURRENT DIRECTORY and call up
+rebuild with the data file directory info like in a) above. The
+directory info specified in up to the four parameters must match the
+directory info in end user environment.
+
+Rebuild will automatically delete any previous file structure
+info records and collect new records.
+
+3.1.4) Distributing file structure updates to the enduser:
+------------------------------------------------------
+
+After collecting the updated file structure info in NewRebuild table
+you can distribute it to the enduser. At the minimum the end user can
+simply run Rebuild and update their data files. However, it is
+recommended that they run STARTREBUILD.EXE file you make with
+goof checks and precautions you write in there. See sample
+startrebuild.prg file.
+
+Note: When Rebuild is executed (no parameters) with both
+Rebuild.dbf/.fpt and NewRebuild.dbf/.fpt in the same directory,
+Rebuild will proceed to ckeck for any structure changes between
+Rebuild.dbf/.fpt and NewRebuild.dbf/.fpt and change the structure of
+the respective tables and then delete Rebuild.dbf/.fpt and rename
+NewRebuild.dbf/.fpt to Rebuild.dbf/.fpt.
+
+3.1.5) Storing latest Recover.app, Gendef.app, Rebuild.def into Rebuild:
+--------------------------------------------------------------------
+Whenever Rebuild sees Recover.app and/or Gendef.app and/or
+Rebuild.def/NewRebuild.def files in current directory it assumes that
+they are new editions/versions and stores them in the first record of
+Rebuild or NewRebuild tables and deletes those files. The first record
+of these files also stores the default options for Recover.app and
+Gendef.app. You can change the default option or after data is
+collected you can change option codes for listed tables.
+
+~~~~~~~~~~~~~~~~
+
+3.2) Executing Rebuild from Non-Foxpro applications
+-------------------------------------------------
+
+Rebuild can be run from non-Foxpro applications - VB, C++, Delphi etc.
+- by using the RebuildN.exe included files, where N is the Foxpro
+version number with appropriate Foxpro library files.
+The library files can be downloaded from
+http://www.abri.com/ft/vfpNlib.zip
+where you substitute the foxpro version number (5, 8 or 9) for N.
+
+The latest version number will accomodate the latest foxpro
+table features. 
+
+The library files can be placed in the same directory as RebuildN.exe
+or in Windows system directory where they can be found.
+
+To launch Rebuild from non-Foxpro apps, just call RebuildN.exe from
+you language application (using API WinExec or whatever) with the
+parameters described in these sections.
+
+To launch RebuildN.exe from windows directly you can make a shortcut
+and indicate the parameters directly without " marks.
+For example the "Target:" would be like
+C:\rebuild\rebuild.exe \accounting ..\data
+to indicate the two directories "\accounting" and "..\data"
+
+Note: If needed, suggested steps like StartRebuild, PreExec or PostExec
+should be implemented in the software language you are using.
+
+4.0 - MORE DETAILS
+==================
+
+4.1 Rebuild Parameter and field codes summary
+---------------------------------------------
+
+INITIAL TABLE STRUCTURE COLLECTION:
+Directory1, Directory2, Directory3, Directory4
+*FILELIST*, FileNameList_TextFile
+*EXCLUDELIST*, ExcludeFileNameListFromDirectory_TextFile
+*ADD* or *REFRESH* or *DELETE*, DBF-DBC_FileName
+
+REBUILD.CODES FIELD OPTIONS
+REBUILDINDEX or REINDEX - section 5.2
+
+REBUILD MESSAGE OPTIONS
+See section 4.3.f below
+
+RECOVER AND GENDEF OPTIONS
+See section 5.4 below.
+
+4.2 Rebuild Return Values
+-------------------------
+
+The return value of Rebuild will be one of three possibities
+
+-N The negative number of processing errors if it cannot complete the process or
++N the number of table files structures collected in file structure collection.
+   or the number of file repairs done in ErrorScan
+   or the number of table files updated in update process
+N = 0 for no file repairs needed or no structure info collected or no files updates.
+
+4.3 Precautions, suggestions and further info
+---------------------------------------------
+a) Never delete the first record in Rebuild.dbf/.fpt or
+NewRebuild.dbf/.fpt. It contains the Recover/Gendef utilities and
+rebuild.def files used by Rebuild.
+
+The initial file structure information collecting must allways be on
+healthy files.
+
+Please look at the included sample StartRebuild.prg for ideas to run
+Rebuild.app safely by enduser.
+
+On each startup, Rebuild extracts the rebuild.def file in first record
+of NewRebuild/Rebuild table and does a self check to make sure that
+these tables are not corrupt. Otherwise it will quit. There is no
+saying what will happen if Rebuild continues with corrupt
+NewRebuild/Rebuild table.
+
+The enduser needs to run Rebuild to collect initial data structure
+info into Rebuild table ON HEALTHY FILES as per method(s) in Section
+3.0 (don't forget to make your custom startrebuild.exe).
+
+b) When updating enduser tables, Rebuild creates new tables listed
+in NewRebuild.dbf IF the tables are missing.
+
+c) When new fields are added or old deleted, Rebuild creates a
+new table with temporary name and appends data to it from old table
+and then erases the old table and renames the new table. This can take
+a long time for a large table but is more accurate in preserving
+actual new table structure you create.
+
+If you add a field and want to populate it with some data for the
+enduser, you can do that in PostExec routine called in your
+Update.app
+
+d) You can change the name of a field without losing data with
+ideas given in Update.prg. If the field is for a table bound to
+DBC it can change the field name without losing data - but please
+verify each case.
+
+e) If Rebuild encounters error(s) it quits returning the negative
+number of processing errors encountered up to that point. If no errors
+are found in errorscan mode, it returns the number of file repairs done.
+
+f) Normally Rebuild reports progress messages, error messages, end
+messages and generates a RebuildLog.txt log file.
+
+You can suppress any of them with with F's in the first record,
+first four characters of the field.
+
+Rebuild.codes field first record:
+---------------------------------
+First character if F  - suppress progress report windows
+Second character if F - suppress error messages.
+Third character if F  - suppress end message when finished.
+Fourth character if F - suppress writing to log file.
+( T and blanks count the same)
+
+However, messages are not suppressed if Rebuild or NewRebuild
+tables are corrupt since then the codes cannot be read.
+
+Rebuild does not suppress Recover messages which are governed by
+recover option codes you select in first record or subsequent records.
+
+g) Separate DBC/DBF directories
+If you have separate DBC/DBF directories, in order to store both DBC
+and table information into rebuild, you will have to indicate both
+directories in Rebuild arguments.
+
+Rebuild("..whatever..DBCdir", "..whatever..DBFdir")
+
+The DBC directory has to be first in the above, since after tables are
+opened/closed by Rebuild, the DBC cannot be handled exclusively.
+
+h) General field contents of NewRebuild and Rebuild tables:
+Field           Contents
+------------------------
+File_Name       Table.dbf, Database.dbc, Pre/PostExec.app file path-names
+                (100 characters default, you can increase the size if you need longer pathlengths.)
+Rec_Opts        Recover option codes for the corresponding table
+Memo1           .def, .dbc and rebuild.def file in first record
+Gen_opts        Gendef option codes where relevant
+Tag_count       The number of CDX index tags for the file.
+Memo2           The index tag information for the .CDX file or Gendef.app in first record.
+Memo3           Empty .cdx files, .dct files or Recover.app in first record.
+Codes           Other Rebuild optional codes, like "REINDEX" or message codes in 1st record
+Desc            A handy field to store your optional short descriptive info.
+
+5.0 ADVANCED FEATURES:
+======================
+
+5.1) NewRebuild PreExec and PostExec
+------------------------------------
+
+When you want to do special stuff, you can perform your own
+PreExecution code before runing update with NewRebuild table and then
+if needed also PostExecution code.
+
+This may be useful for example changing 
+
+Some example uses are:
+
+* Changing a field name: you can make a VFP PreExec routine that uses
+ALTER TABLE command to change the name of a field which retains the
+field data. You can use PostExec method after Rebuild is done to add
+or change data in a new field.
+
+* Use PreExec and PostExec methods if you want to update Views to
+reflect change in field names although in general that should not
+be necessary since the new updated .dbc file should have that info.
+
+* The PreExec routine could also be used to delete all prior free floating
+.def files your distributed to your customers with Recover before Rebuild.
+ERASE *.def *.de_
+
+You need to monitor your own errors and send appropriate error
+messages to enduser. If you are not using current directory for all
+your operation, be sure your PreExec and PostExec use correct table
+pathnames.
+
+PreExec and PostExec routines are best called from StartRebuild.Exe
+which checks if errorscanning is needed or an update is needed. Make
+it as goofproof for the enduser as possible.
+PLEASE SEE SAMPLE STARTREBUILD.PRG AND UPDATE.PRG FILES.
+
+5.2) Codes feld
+---------------
+
+' REINDEX ' in Rebuild.Codes field - enduser ErrorScan session:
+Rebuild replaces and re-indexes the .cdx files when they need repair with
+the stored .cdx file. With this option it will also reindex the file
+whenever end user runs Rebuild for error scanning (with only Rebuild.dbf present)
+
+' REBUILDINDEX ' in Rebuild.Codes field - enduser ErrorScan session:
+Since Rebuild.dbf stores empty fresh index files it can also replace
+the current .cdx file with the stored .cdx file and then re-index.
+
+Either of these can be implemented by placing them in NewRebuild.dbf
+when updating tables and before sending to enduser OR by including code
+in StartRebuild.exe to insert these in selected tables.
+
+5.3) Multiple table directories
+-------------------------------
+
+When collecting new table info Rebuild normally collects the info in
+the current directory. You can specify up to four table directories
+for rebuild to collect table information. For current directory use
+the empty string "" as parameter.
+
+You must use correct relative table directories from the current
+FoxPro default directory (the currect SET DEFAULT TO). For example, in
+the following:
+
+=Rebuild("", "CustomerData\", "..\ControlTables", "C:\AppInfo\Data")
+
+Rebuild will collect table information for all tables in the current directory,
+in the "CustomerData" directory relative to the current directory, in the "..\ControlTables"
+directory relative to the current directory and in the absolute directory "C:\AppInfo\Data"
+
+5.4) Recover and Gendef option codes
+------------------------------------
+
+The default Recover and Gendef option codes used are in the Rec_Opts
+and Gen_Opts fields of the first record of the NewRebuild and
+Rebuild.dbf files which you can change to your needs.
+
+If you want a particular table to have different Recover option codes
+you can just edit the corresponding file record Rec_Opts field
+content.
+
+You can also use a specific .def file for any table by generating the
+.def file for the table before running Rebuild with only
+NewRebuild.dbf/fpt present. Rebuild will then store that specific
+.def file you generated into NewRebuild.dbf/fpt. This will also work
+with customer started Rebuild on his site if the Rebuild.dbf has only
+the first record and there is no NewRebuild.dbf file present. But in
+that case it will also delete the .def file after storing it.
+
+6.0 OTHER IMPORTANT NOTES
+=========================
+
+EXTRANEOUS DATA FILES: Rebuild operates on the specified data
+directory. If you have stray files in the directory Rebuild.app will
+regard them as part of the data file set and include them when
+collecting data structures. Subsequently, if such files are directly
+deleted, Rebuild.app will return with an "Inaccessible file...." error
+message. Any listed tables with inaccessible DBC links may also have
+same problem.
+
+CDX FILE REPAIR: Rebuild repairs .CDX files by storing "empty" .CDX files into
+New/Rebuild.dbf/.fpt and then replacing any bad ones and reindexing.
+It uses standard FoxPro commands and not low level file analysis of
+.CDX structure.
+
+EXCLUSIVE ACCESS and CLOSE DATABASE ALL: Rebuild uses
+CLOSE DATABASE ALL statement and requires exclusive use of all
+tables and DBC's in the directory or it quits. Otherwise Tables and
+DBC files are not updateable. It is probably best for enduser to run
+StartRebuild.exe (or whatever you name it) separately from Windows
+rather than from your app. Your app and other apps using the data in
+the data directory should be closed/exited.
+
+ENVIRONMENTAL VARIABLES: Only a few environmental variables are saved:
+Talk, CpDialog and SetExclusive, SetDefault.
+
+SAMPLE STARTUP PROGRAM: Please look at the included sample
+StartRebuild.prg for enduser to start Rebuild.app safely.
+
+ENDUSER REBUILD: It is possible to use Rebuild to repair end user
+files even when enduser does not have Rebuild by sending a copy of
+Rebuild.app, StartRebuild.exe and Rebuild.dbf/.fpt with all file
+information already collected at your site. But you have to make sure
+that all DBC/table/.cdx structure information that you have in the
+Rebuild.dbf/.fpt exactly matches the end-user DBC/table/.cdx's. There
+should have been no changes in data files, indexes or DBC's. This may
+be possible if you keep different Rebuild.dbf/.fpt's for different
+revisions of your software and you know exactly which revision your
+client has.
+
+REBUILD.DBF/.FPT CORRUPTION: Rebuild stores rebuild.def in the first
+record of Rebuild/NewRebuild table. It uses it at every startup to
+check for corruption in these tables and will quit if it finds any. If
+for whatever reason you alter table structure of Rebuild or NewRebuild
+tables make sure to generate a new .def file.
+
+When generating a NewRebuild.dbf/.fpt you could allways start with an
+unused fresh copy that you have stored to prevent corruption that may
+result from frequent re-use. Attempting to repair Rebuild.dbf/.fpt or
+NewRebuild.dbf/.fpt with Recover may prove futile, since a missing
+record or an ocasional wrong memo may be acceptable for normal enduser
+data but may have serious consequences for Rebuild use.
+
+-------------------------------
+Abri Technologies, www.abri.com

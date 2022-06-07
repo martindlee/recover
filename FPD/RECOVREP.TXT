@@ -1,0 +1,146 @@
+****************************
+C:\RECOV30\FPD\SAMPLE5 Recover report - 07/16/03 17:52:21
+
+ ** DBF file: 
+ DBF header OK! Record 7 Error: invalid trace code
+ Trace method:
+100 records recovered.
+Please inspect records!
+ 
+** Memofile: 
+ No memo errors found!
+0.09 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE5 Recover report - 07/16/03 18:01:16
+
+ ** DBF file: 
+ DBF header OK! Record 7 Error: invalid trace code
+ Trace method:
+100 records recovered.
+Please inspect records!
+ 
+** Memofile: 
+ No memo errors found!
+0.09 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE6 Recover report - 07/16/03 18:01:54
+
+ ** DBF file: 
+ DBF header Error(s)!
+Record 1 field error.
+ vFPS method:
+100 records recovered.
+Please inspect records!
+ 
+** Memofile: 
+ No memo errors found!
+****************************
+C:\RECOV30\FPD\SAMPLE1 Recover report - 07/16/03 18:03:48
+
+ ** DBF file: 
+ DBF header Error(s)!
+DBF records appear OK!  Header repaired! 
+** Memofile: 
+ MemoHeader Error(s)! MemoHeader repaired!
+
+0.03 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE2 Recover report - 07/16/03 18:04:21
+
+ ** DBF file: 
+ DBF header Error(s)!
+Record 1 field error.
+ Last field def search:
+100 records recovered.
+Please inspect records!
+ 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE2 Recover report - 07/16/03 18:04:43
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found! 0 extraneous memos extracted! , 
+0.09 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE3 Recover report - 07/16/03 18:05:10
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ Record 17, 'NOTES' memo pointer error!
+
+Deleted invalid memo pointers:
+(Memo/Record)
+NOTES/17
+
+Memo crosslinks existed between:
+(Memo/Record)
+NOTES/1 & NOTES/8
+ Storing old/non-matched memos ==> RecoverM.dbf/fpt file!
+ 3 extraneous memos extracted! ,  8/9 memos recovered!
+0.10 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE1 Recover report - 07/16/03 18:20:07
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE4 Recover report - 07/17/03 11:25:29
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ Record 1, 'NOTES' memo pointer error!
+
+Deleted invalid memo pointers:
+(Memo/Record)
+NOTES/1
+PICTURE/1
+PICTURE/4
+NOTES/5
+NOTES/8
+NOTES/12
+NOTES/15
+PICTURE/15
+NOTES/17
+ ,  0/9 memos recovered!
+0.01 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE4 Recover report - 07/17/03 11:25:35
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found!
+-0.03 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE5 Recover report - 07/17/03 11:25:45
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found!
+0.08 seconds.
+****************************
+C:\RECOV30\FPD\SAMPLE6 Recover report - 07/17/03 11:25:53
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found!
+0.00 seconds.
+****************************
+C:\RECOV40\FPD\SAMPLE1 Recover report - 07/30/03 00:58:54
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.08 seconds.

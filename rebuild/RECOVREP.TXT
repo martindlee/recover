@@ -1,0 +1,360 @@
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:11:46
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.20 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:12:38
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.09 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:18:07
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:20:04
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.05 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:24:24
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:25:43
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.05 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:27:22
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:31:04
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:32:49
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:34:12
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:35:33
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:35:52
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:38:44
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:41:19
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:42:10
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:44:34
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:45:15
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:46:26
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:46:45
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:47:08
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:48:48
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.03 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:49:33
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:52:40
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:53:11
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 21:56:48
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 22:00:30
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 22:06:42
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 22:07:01
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 22:13:15
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 22:15:26
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 22:15:33
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/02/07 22:16:22
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 01/03/07 10:15:01
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.19 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 10/04/11 11:10:59
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 10/04/11 11:12:38
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 10/04/11 11:14:39
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.01 seconds.
+****************************
+C:\RECOV40\REBUILD\HISTORY Recover report - 10/04/11 11:14:39
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+5.94 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 10/04/11 11:16:09
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.01 seconds.
+****************************
+C:\RECOV40\REBUILD\HISTORY Recover report - 10/04/11 11:16:09
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! C:\RECOV40\REBUILD\HISTORY.CDX not found - .CDX header flag reset! 
+** Memofile: 
+ No memo errors found!
+5.82 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 10/04/11 11:17:54
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\HISTORY Recover report - 10/04/11 11:17:54
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! C:\RECOV40\REBUILD\HISTORY.CDX not found - .CDX header flag reset! 
+** Memofile: 
+ No memo errors found!
+5.76 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 10/04/11 11:18:18
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\HISTORY Recover report - 10/04/11 11:18:18
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! C:\RECOV40\REBUILD\HISTORY.CDX not found - .CDX header flag reset! 
+** Memofile: 
+ No memo errors found!
+5.78 seconds.
+****************************
+C:\RECOV40\REBUILD\REBUILD Recover report - 10/04/11 11:21:27
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+** Memofile: 
+ No memo errors found!
+0.02 seconds.
+****************************
+C:\RECOV40\REBUILD\HISTORY Recover report - 10/04/11 11:21:27
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! C:\RECOV40\REBUILD\HISTORY.CDX not found - .CDX header flag reset! 
+** Memofile: 
+ No memo errors found!
+5.76 seconds.

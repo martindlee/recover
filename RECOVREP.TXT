@@ -1,0 +1,80 @@
+****************************
+C:\RECOV30\TEMP Recover report - 09/19/01 13:01:05
+
+** DBF file: 
+DBF header Error(s)!
+'C:\RECOV30\TEMP.DEF' Definition file not found!
+
+File not recovered!
+0.07 seconds.
+****************************
+C:\RECOV30\X Recover report - 09/19/01 13:01:13
+
+** DBF file: 
+No DBF errors found!
+0.16 seconds.
+****************************
+C:\RECOV30\X Recover report - 07/11/03 13:28:00
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+0.02 seconds.
+****************************
+C:\RECOV30\X Recover report - 07/11/03 13:28:12
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+0.02 seconds.
+****************************
+C:\RECOV30\X Recover report - 07/11/03 17:53:14
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+0.05 seconds.
+****************************
+C:\RECOV30\X Recover report - 07/11/03 17:53:17
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+0.03 seconds.
+****************************
+C:\RECOV40\X Recover report - 07/24/03 11:02:42
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK! 
+0.31 seconds.
+****************************
+C:\RECOV40\X Recover report - 07/27/03 20:57:58
+
+ ** DBF file: 
+ DBF header Error(s)!
+DBF records appear OK!  Header repaired!
+0.02 seconds.
+****************************
+C:\RECOV40\X Recover report - 07/27/03 20:58:01
+
+ ** DBF file: 
+ DBF header Error(s)!
+DBF records appear OK!  Header repaired!
+0.02 seconds.
+****************************
+C:\RECOV40\X Recover report - 07/27/03 20:58:15
+
+ ** DBF file: 
+ DBF header Error(s)!
+DBF records appear OK!  Header repaired!
+0.03 seconds.
+****************************
+C:\RECOV40\X Recover report - 07/27/03 20:58:17
+
+ ** DBF file: 
+ DBF header Error(s)!
+DBF records appear OK!  Header repaired!
+0.02 seconds.
+****************************
+C:\RECOV40\X Recover report - 07/27/03 20:58:18
+
+ ** DBF file: 
+ DBF header Error(s)!
+DBF records appear OK!  Header repaired!
+0.02 seconds.

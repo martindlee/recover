@@ -1,0 +1,53 @@
+VFP may actually damage your DBF file:
+Fox 2.x gives an "not a DBF file" error if the record counter is incorrect.
+VFP ignores that and opens up the file anyway.
+While in FP2.x the error is a nuisance it is also an advantage
+1) it gives you a warning that something is wrong - you lost
+some records in a transaction, etc. and steps can be taken
+to repair the problem with a repair utility.
+2) IF the header record counter is incorrect indicating
+less records than actual records - for example having
+11,000 records but the counter indicates only 10,400
+records, in VFP you then lose the 600 records. But in
+FP2.x you are alerted to the problem and can take steps
+to repair the file. 
+
+Memo pointer error buildup.
+Memo pointers do get corrupt - proportionally to file
+activity and the size of file.
+Corruption occurs in several ways.
+Illegal pointer: pointer indicates memo outside of memo file - easily
+detectable with a Good File Repair Utility. This error may cause PACK
+problems and of course loss of data.
+Crossed pointers: Two or more pointers indicating the same memo - 
+detectable with a GFRU. May cause pack problems and loss of data.
+Wrong pointers: YES this happens and is normally undetectable - except
+with the Recover Trace method. The problem builds up and eventually
+causes a mess for end user.
+
+Note that Corruption problems can build up slowly and often are not 
+perceptible until the situation gets real bad. Therefore it can be 
+extremely important to do do regular file error scans with a good error 
+detection and repair utility.
+
+Dissapering records:
+1) The more common cause of "dissapearing" records is corrupt indexes
+which is easy to fix with the DELETE TAG ALL / REINDEX ... sequence.
+
+2) But there is another not so well known possibility of "decreased"
+file header record counter.
+Normally, a header record counter error is a too large counter value
+and results in the "Not a Table/DBF file!" error message.
+
+However, an error in the record counter showing less than actual
+records WILL NOT result in the error message. Those aditional records
+are not accessible AND when you APPEND or INSERT you
+destroy those records.
+
+There are other invisible forms of file corruption which build up
+unnoticed - invalid delete flags, memo pointer errors, valid but wrong
+memo pointers (YES! valid but wrong), etc. - until eventually the damage
+or loss of data is extensive.
+
+It may be a good idea to check your databases for errors periodically
+with a good file error detection and repair utility.

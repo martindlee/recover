@@ -1,0 +1,32 @@
+****************************
+C:\RECOV30\FPW\SAMPLE1 Recover report - 07/16/03 15:21:50
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found!
+0.12 seconds.
+****************************
+C:\RECOV30\FPW\SAMPLE1 Recover report - 07/16/03 15:23:29
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found!
+0.06 seconds.
+****************************
+C:\RECOV30\FPW\SAMPLE1 Recover report - 07/16/03 16:44:44
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found!
+0.04 seconds.
+****************************
+C:\RECOV30\FPW\SAMPLE1 Recover report - 07/16/03 18:18:09
+
+ ** DBF file: 
+ DBF header OK! DBF records appear OK!  
+** Memofile: 
+ No memo errors found!
+0.06 seconds.

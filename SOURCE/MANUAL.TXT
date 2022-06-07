@@ -1,0 +1,1025 @@
+                         RECOVER Version 2.0
+               Copyright (c) 1995, Abri Technologies
+
+(Nota: Una traducción española de este manual está disponible del
+http://abri.com/spanish.txt.)
+
+These instructions are divided into 7 sections:
+1.0 - INTRODUCTION
+2.0 - GETTING STARTED
+3.0 - ADVANCED INFORMATION
+4.0 - ERROR DETECTION IN YOUR APP.
+5.0 - TRACE SALVAGE METHOD
+6.0 - SPM MEMO SALVAGE
+7.0 - OTHER APPLICATION NOTES
+8.0 - TECHNICAL SUPPORT
+                        1.0 - INTRODUCTION
+                        ~~~~~~~~~~~~~~~~~~
+
+RECOVER is a comprehensive, automated, on the fly FoxPro database table 
+recovery utility that can be integrated into your FoxPro software. It 
+requires very little or no end user interaction - nor special 
+skills or data editors.
+
+1.1 Version 2.0 features:
+=========================
+* improved, accurate error detection with options to select error detection
+  only.
+* faster large file recovery.
+* Single user or royalty free license
+* Royalty free version now includes
+  1) International language support.
+  2) optionally turns off progress messages and/or Message box dialogs
+* available for FoxPro DOS/Windows/Mac (2.6) and Visual Foxpro.
+* Recover uses several different ways of repairing or salvaging .dbf and .fpt
+  files. It can recover data even from a fragmented file piece - like 
+  'file0004.chk' resulting from chkdsk or scandisk.
+* A new, more visual file pieces salvage screen method.
+* Includes patent pending Trace recovery method - a highly reliable .DBF 
+  and .FPT file recovery for high security applications. (More theoretical 
+  aspects of the Trace method are available at http: //abri.com/trace.html.)
+* Recover will also repair 'Clipper/FoxBase/dBaseIII PLUS'
+.DBF/.DBT and AlphaFive files with following limitations: (1) trace method
+is not used, (2) memo repair is limited to removing bad pointers and header
+repair. AlphaFive .def file generation requires correct option selection.
+
+1.2 Recover Vers. 2.0 License Agreement and Disclaimer 
+======================================================
+SINGLE USER LICENSE (RecoverS.app):
+Single user license entitles the original purchaser, to use Recover on a 
+single computer by a single user for each copy purchased. It is to be used 
+as a separate application and not programatically integrated into other 
+applications.
+
+ROYALTY FREE DISTRIBUTABLE LICENSE (Recover.app): 
+Distributable royalty free license entitles you, the original
+purchaser of Recover, to royalty free distribution of Recover with
+your own legitimate application (.APP or .EXE), as long as your
+application was generated on single CPU by same programmer/developer
+and Recover is used only within your own application and is setup to
+error scan or repair files only used in the application and not
+distributed as a general repair package. You cannot have any intention
+of distributing copies of Recover for free or for gain of any type.
+
+SITE LICENSES:
+Available per user (single user license) or per developer (royalty free 
+compiled code license).
+
+DISCLAIMER:
+Recover is supplied as is without warranty of any kind. Abri Technologies 
+disclaims all warranties, expressed or implied, including, without 
+limitation, the warranties of merchantability and of fitness for any 
+purpose. Abri Technologies assumes no liability for damages, direct or 
+consequential, which may result from the use of Recover software.
+
+All rights not expressly granted here are reserved to Abri Technologies.
+
+1.3 Running single user Recover as standalone.
+==============================================
+The single user Windows (3.1/95) or DOS version of RecoverS.app can be run 
+without FoxPro 2.6 software with the following files: RecoverS.app - the 
+Recover utility in FoxPro code; RunRecov.exe - file to load RecoverS.app; 
+and FOXW2600.ESL or FOXDX260.ESL FoxPro run time file
+
+The needed files can be downloaded from http://abri.com/recover.html#FpRun 
+web site.
+
+The files should be in the same directory and RunRecov.exe should be 
+started from same directory. Alternatively the .ESL file can be placed in 
+DOS, Windows or Windows/system path - as long as the system can find it.
+
+In some cases the Recover DOS version may exhibit very slow mouse response. 
+In that case make sure that expanded memory is turned off and extended 
+memory is turned on in EMM386.EXE config.sys driver.
+
+                         2.0 - GETTING STARTED
+                         ~~~~~~~~~~~~~~~~~~~~~
+2.1 SingleUser & RoyaltyFree version differences.
+=================================================
+The Royalty free version is parameter driven and returns function type 
+numeric error messages. The Single user comes with a screen interface for 
+the user to select Recover (and GenDef) procedures.
+
+These instructions include some additional programming features of the 
+Royalty free version not intended for single user version. The necessary 
+usage differences should be apparent. 
+
+The single user version is upgradable to the Royalty free version -
+please check most recent price list.
+
+2.2 RECOVER Usage:
+==================
+The single user screen version is simply called as 
+
+DO RecoverS
+
+The rest of Recover process is selected from screen choices.
+
+The distributable - royalty free version - is called up as:
+
+DO Recover with FileName[, MemoFile [, OptionCodes]]
+or
+RecResult = Recover(FileName[, MemoFile [, OptionCodes]])
+
+where Filename is string representing the exact filename, and OptionCodes 
+is a string of 'T' or 'F' characters to select Recover options - see 
+"Option Codes" in "Advanced Information" section below. If you are going to 
+distribute Recover with your app and did not include trace method coding, 
+it is recommended that you turn off the vFPS method option.
+
+Note:
+When desired, you can force the vFPS method on, regardless of error
+detection by turning off the "Repair Record Header", "Trace for records"
+and "Last field def search" repair methods at same time.
+
+Note: Like other .app files, Recover.app file cannot be included in 
+FPD/FPW/MAC/VFP into your project building. It will be marked as excluded. 
+You need to add Recover.app to your final distribution files - before you 
+use the Setup Wizard to generate the distribution diskettes.
+
+Examples:
+
+DO RECOVER WITH 'Account.dbf'
+
+uses standard options for both .DBF and .FPT files, while
+
+=RECOVER('Account.dbf', '', 'TTFFFFFTTTTTTTTTTTTTT')
+
+uses standard options but only permits vFPS method for record salvage.
+
+If the memo file is absent or has extension '.fpt' or 'dbt',the  MemoFile 
+variable can be replaced with the empty string ''.
+
+For standard options, OptionCodes string can be replaced with '' or 
+omitted.
+
+A handy additional function GenOpt.prg is included with royalty free 
+versions for generating the OptionCodes string. You can edit the function 
+and use it to generate a clipboard string to include into your program 
+line.
+
+2.3 Definition file 'filename.def': 
+===================================
+Except for trivial header record and memo counter repairs, RECOVER requires 
+a definition file 'filename.def' to be present in the same directory.
+The definition file is generated with the GenDef.app utility.
+
+In the single user version the GenDef.app utility is built in - the
+<Generate .DEF file> button.
+
+Use the GenDef.app utility to generate the definition file, 'filename.def' 
+from any good copy of your database table - it can be another or even empty 
+DBF file but must have exactly the same fields in same order. A good source 
+is your most recent backup copy of the file. For Visual Foxpro a small 
+additional file 'filename.de_' is generated containing the database 
+filepath - if needed.
+
+If a backup or a copy of the file with same structure is not available, you 
+can attempt to generate the .DEF file from the bad file. However, this is 
+less reliable and the first method is recommended.
+
+Gendef.app syntax:
+DO GENDEF WITH FileName[, MemoFile [, OptionCodes]]
+   or
+GenDefResult=Gendef(FileName[, MemoFile [, OptionCodes]])
+
+Same rules apply here for the parameters as for Recover.app.
+
+A list of "GenDef Option Codes" is found in the "Advanced Information" section.
+
+Example: = GenDef("account.dbf")
+
+WARNING: (1) Do not use trace codes option if you are repairing the file for 
+the first time. The Trace method is an excellent recovery method and very 
+reliable but requires some programming changes and file encoding before 
+file corruption occurs. (2) Rebuild the definition file if any table
+properties or structure have changed.
+
+NOTE for Alpha Five files: AlphaFive .def file generation
+requires the corresponding option selection.
+
+                        3.0 - ADVANCED INFORMATION
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+3.1 Recover Option Codes:
+=========================
+The option codes are shown below numerically in sequence with default 
+values in brackets.
+
+   Record file (DBF) error detection methods:
+ 1(T)  - Check record file header
+ 2(T)  - Scan records - with delete flag - and trace code (IF coded)
+ 3(F)      AND check fields for corruption (slower)
+ 4(F)        AND check suspicious fields (slower)
+             ('warnings' - eg. right justified char field '    Peter Joh',
+              binary data in char fields, etc.)
+
+   Record file (DBF) repair methods:
+ 5(T)  - repair header
+ 6(T)  - Trace method (if coded)
+ 7(T)  - Last field def search
+ 8(T)  - vFPS (Visual File pieces salvage)
+
+   Memo error detection:
+ 9(T)  - Check memo file header
+10(T)  - Scan memos - level 1 - invalid pointers (slower)
+11(T)      AND - level 2 - memo crosslinks / overlaps (slower)
+
+    Memo file (FPT) repair methods:
+12(T) - repair header
+13(T) - Trace method (if coded)
+14(F) - SPM method
+15(T) - Repair memo pointers
+16(T) - Empty memo
+
+    Other options
+17(T) - Save extraneous memos into RecoverM.dbf/fpt (SPM only)
+18(T) - Show Progress messages
+19(T) - Show end MsgBox Dialog
+20(T) - Save old DBF/FPT (major changes changes only - when file rewritten).
+21(T) - Warning/Error on .DEF file / Header field discrepancy. - or valid
+        FPT header mBlockSize mismatch.
+
+3.2 RECOVER Function Values:
+============================
+When used as a function, RECOVER() returns +1 if recovery successful and
+negative numbers if not successful.
+
+The following are Recover return values:
+Value Meaning
+---------------------------------------------------------
+ +1    file recovered
+  0    no errors found
+ -1    usage/parameters error
+ -2    Filename extension (.DBF, .SCX, ...) missing
+ -3    file not found
+ -4    exclusive file use required
+ -5    DEF file not found or cannot open.
+ -6    suspicious .DEF file (possibly not up to date).
+ -10   Record file not recovered
+ -11   Memo file not recovered
+
+The single user (screen) version does not return a value.
+
+3.3 Definition file 'filename.def':
+===================================
+The structure definition file is simply another foxpro table defining the 
+structure of your data file.
+
+Due to the various values involved in the file, it is recommended to use 
+the GenDef utility to make the .def file. If you are interested in the 
+definition file contents, you can view the details at our website http:
+//abri.com/deffile.txt
+
+Gendef usage :
+DO GENDEF WITH FileName[, MemoFile [, OptionCodes]]
+   or
+GenDefResult=Gendef(FileName[, MemoFile [, OptionCodes]])
+
+Example:    =GENDEF('customer.dbf', '', 'FFTT')
+
+This example does not insert trace codes into your file, treats
+character fields as text only fields (useful in detecting binary
+garbage in character fields), and uses end message dialog when finished.
+
+GENDEF will give you the option of converting your .DBF file to use the 
+trace method - discussed below. The next option will be inserting tracers 
+into your memo file.
+
+IMPORTANT NOTE/WARNING:
+You must rebuild the definition files with the Gendef utility if any table
+properties or structure have changed since last .def file.
+
+If you disable end message box dialog (see option codes below) you can
+use the following return values to determine the result.
+
+3.4 GenDef Return values:
+=========================
+ 0 = successful
+-1 = missing parameters
+-2 = file(s) not found
+-3 = File not accessible, shared or corrupt or VFP file in FP2.X
+-4 = Exclusive use of file required
+-5 = Not a FoxPro, dBaseIII or FoxBase file.
+-6 = Missing memofile
+-7 = DBC DataBase file not found
+-8 = Exclusive access to a good copy of DBC file required
+
+3.5 GenDef Option codes:
+========================
+OptCode No.(Default char value) - Meaning
+1(F) insert R_TRACE_ record field codes
+2(F)     AND insert memo trace codes too.
+3(F) treat character fields as text only.
+4(T) use dialogs.
+5(F) attempt generating .DEF file from corrupt file.
+6(F) This is an Alpha Five File
+
+3.6 File Recovery Methods: 
+==========================
+RECOVER uses any of several ways of recovering damaged files. It may be 
+helpful to understand the sequence RECOVER uses to recover your record 
+files. Depending on options turned on the sequence is:
+
+RECOVER first checks the .dbf file header for errors and record corruption
+for errors.
+
+If no errors are detected, Recover returns with the 0 code and the end 
+MsgBox dialog or proceeds to memo error detection if needed.
+
+If only header corruption detected, Recover repairs the header if needed 
+(and option turned on) and returns or proceeds to memo error detection.
+
+If record corruption is detected, Recover will use the following methods
+of file repair:
+If the file is coded with the trace method it will use the trace code for
+restoring the file.
+   ELSE
+It will attempt to repair file with the last field definition search
+(cases of very corrupt or displaced header).
+   ELSE
+It will use the vFPS method which brings up the "Visual File pieces salvage" 
+screen.
+
+If there is no record file corruption or it has been fixed, Recover
+proceeds to memo error detection and memo recovery.
+
+Memo file header is checked for header errors and memo pointers are
+scanned for errors.
+
+If only header errors exist, Recover repairs the header and
+returns the appropriate code.
+
+If memo pointer error is detected, Recover resorts to one of the
+following memo salvage methods in the order of priority:
+
+IF file is coded with trace codes
+Recover will use the Trace Method to recover the memo file and pointers.
+  ELSE
+It will attempt to use the SPM method IF there is less than 5000
+memos in the memo file.
+  ELSE
+It will eliminate bad memo pointers and report them in the
+Recovrep.txt report file.
+  ELSE
+If no memo pointers are valid, it will reset all memo pointers
+and empty the memo file.
+
+You can include or exclude any of the recovery methods with the option 
+codes.
+
+You can also use Recover as an error detection tool by selecting
+the proper option codes.
+
+3.7 Recover Trace Coding:
+=========================
+Recover trace coding is a highly reliable method of recovering damaged 
+record AND memo files for applications with known higher probability of 
+file damage or for high security application requirements - accounting, 
+banking, government security, etc...
+
+Trace method details and instructions are found in Section 5.0
+
+3.8 Last field definition search notes: 
+=======================================
+This method is useful if header is badly damaged, partially missing or the 
+whole file displaced. It is not suitable if the rest of the file is also 
+damaged. If you are not sure of the situation it is best to specify the 
+vFPS method for file recovery - unless, of course, you have trace coding
+which automatically takes priority.
+
+3.9 vFPS method ("Visual File pieces salvage"): 
+===============================================
+The "Visual File pieces salvage" screen comes up when other methods 
+were excluded or could not be used. 
+
+You can force the vFPS method on, regardless of error detection by
+turning off the "Repair Record Header", "Trace for records" and
+"Last field def search" repair methods at same time.
+
+Functional Description:
+A raw data viewing area appears with the file data (and possibly other 
+garbage) in a window on left, a "record viewer" at bottom and other 
+file positioning and saving controls. In the raw data viewing area at 
+left, the red and green characters indicate the extent of one record - 
+the red character being the FoxPro "record delete flag" and refered to 
+as the "record pointer". In some cases only the first portion of the 
+record may be shown in the raw data viewing area.
+
+Warning: The "Record Viewer" is for viewing the record alignment only.
+DO not try to view/open general or memo fields. There is no actual
+General field or memo associated with the field. In FPW/Mac attempting
+to view a General field may result in an unrecoverable error.
+
+You can move the record pointer to anywhere on the raw viewing area by 
+simply clicking on a character position. You can inspect the 
+corresponding record in the "Record viewer" at bottom. The <Check 
+record> button can be used to verify that a record is valid. The 
+"checking" quality depends on the "Scan quality" setting - the higher 
+it is the more thorough checking but slower. These "Scan quality" 
+setting also affect <Scan good> <Skip bad> button operations.
+
+Instructions:
+Place the record pointer at the beginning of first valid record in the 
+file and click the <MarkStartRec> button. Then move the record pointer 
+with the ">>" (or <n>) forward record button and checking each record 
+with the "Record Viewer" and/or the <Check record> button until you 
+position it on the last GOOD verified record in that good file block 
+and then click the <MarkEndRec> button. The <Scan good> button is 
+useful in replacing the ">>"/<Check_record>/VisualCheck sequence - 
+except the visual part. It will in most cases keep scanning good 
+records until it finds the last one in that block - which then can be 
+marked with the <MarkEndRec> button. If there are several good blocks 
+of data interrupted with garbage, you can repeat the above procedure 
+for every good block you find. Once you marked one block good, you use 
+the '>>' button to visually advance to the next non-garbage area and 
+use the mouse and record pointer to find the next good block. The 
+<Skip bad> button can also be useful for skipping over bad blocks to 
+find the next good block - but in case of offset file blocks it may 
+not be accurate. When you have finished marking all the good file 
+blocks (may be only one) just click the <Done> button - or <Cancel>
+if you wish to abort.
+
+Controls Summary:
+* The "|<", "<<", ">>" and ">|" (or <B>, <P>, <N> and <E> in DOS) 
+buttons move the pointer to BOF , one record back, one record forward 
+and EOF respectively. The record jump range of "<<" and ">>" can be 
+changed by changing the value '1' in between the "<<" and ">>" buttons 
+to any positive integer less than 100. * You can also jump to any 
+record or file position by changing the values in the "RecNum" and 
+"FilePos" fields. * The <Toggle Delete> is used to change invalid file 
+delete flags. Use this when you believe that you have a valid record 
+position and the <Check record> indicates an invalid flag. A valid 
+FoxPro delete flag is either a space ' ' or a '*' character. * <Scan 
+good> <Skip bad> have been discussed above. * <Undo last> is used to 
+cancel the last usage of of either the <MarkStartRec> or <MarkEndRec>.
+
+Mousing problems:
+The mousing action in the raw data viewing area may be slow. This is 
+especially true for FPD under Win95 - requiring possibly several 
+clicks. To eliminate this problem with FPD set EMM386.EXE to OFF and
+start the system in DOS mode only.
+
+Note: The vFPS method used on Visual FoxPro files requires the Visual 
+Foxpro edition of Recover - since it displays records in a browse 
+screen.
+
+               4.0 - ERROR DETECTION IN YOUR APP.
+               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Early error detection is extremely important for you application. Data file 
+errors can creep in unnoticed and build up until eventually the end user 
+notices widespread data errors.
+
+Here are some examples of errors which may go unnoticed. Your app may be 
+"running OK", but but errors are building up invisibly.
+
+"Missing Records Phenomena"
+For whatever reason, the most frequent error in data files is the
+wrong header record counter error.
+
+In FP2.X a too large record counter error will result in the typical error 
+No. 15, "Not a table/DBF file!". This usually means you have lost some 
+records at the end of the file in a process somewhere. Further more, Visual 
+Foxpro simply ignores this problem and continues with the program. This may 
+not be such a blessing. You are not alerted that a problem has occurred and 
+not given an opportunity to take corrective measures.
+
+The more insidious problem, although less frequent, is the too small record 
+counter error. This error is simply ignored in both FP2.X or VFP and WILL 
+NOT result in an error message. Those additional records are not accessible 
+AND when you APPEND or INSERT those records are destroyed.
+
+"Memo pointer error buildup"
+
+Memo pointers do get corrupt - proportionally to file activity and the size 
+of file. Corruption occurs in several ways. 
+
+1) Illegal pointer: pointer indicates memo outside of memo file - easily 
+detectable with a good file repair utility (GFRU). This error may cause 
+PACK problems and of course loss of memo data.
+
+2) Crossed pointers: Two or more pointers indicating the same memo - 
+detectable with a GFRU. May cause pack problems and loss of data.
+
+3) Wrong pointers: YES this happens and is normally undetectable and 
+unrepairable - EXCEPT with the Recover Trace method. The problem builds up 
+and can eventually cause a mess for end user.
+
+"Other file corruption buildup"
+There are other invisible forms of file corruption which build up unnoticed 
+- invalid delete flags and garbage in character fields (causing seek 
+problems), etc.
+
+The above mentioned file errors may not result in the applications
+terminating, but the errors continue to accumulate unnoticed until
+the whole thing goes wacky.
+
+If errors are permitted to go undetected the resulting accumulated damage 
+can in some cases result in useless data files.
+
+It is wise to check your files with Recover periodically for errors - AND 
+after EVERY system crash. Just as Windows 95 and many Unix systems check 
+the file system for damage, when starting up, it may be a good practice to 
+setup your app to use Recover to check and repair files whenever starting 
+up your application. You can easily build a file scan/repair routine -
+an example given below.
+
+This example has the the pathnames of all your important data files stored 
+in a DBF file TABLES.DBF so you can scan them for error at beginning 
+of your app.
+
+SELECT 0
+USE TABLES.DBF && (has one field 'filename')
+SCAN
+  Select 0
+  * Scan for errors and repair - exclude vFPS method
+  WAIT WINDOW "Checking data file " +ALLT(FileName) NOWAIT
+  RecResult = Recover((ALLT(FileName)),'', 'TTFFTTTFTTTTTTTTTTTTT') && skip vFPS method
+  * good idea to reindex the file if damage reported.
+  * IF RecResult = 1
+  *   Your (FileName) reindex procedure here.
+  * ENDIF
+  Select TABLES
+ENDSCAN
+USE IN TABLES
+
+                  5.0 - TRACE SALVAGE METHOD
+                  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ADVANTAGES: 
+- highly reliable method of recovering damaged record AND memo files
+- fast recovery.
+- recovers files without any user interaction.
+
+DISADVANTAGES: 
+- Trace involves some additional programming code in your app.
+- While it recovers text memos reliably, it does not specifically search
+  out General (and picture) field 'memos' - but see comment below.
+  General fields are actually memos with binary graphic file information.
+
+Further Comments: 
+- You can minimize your trace coding requirements by using it only for 
+  critical files. Files which seldom change, probably do not need the trace 
+  coding.
+- If regular text memos are present, it is highly probable that General 
+  (and picture) fields will be recovered with the trace method as well.
+  Note that there are ways of storing graphic files into text memos if
+  necessary. In some other compilers these files stored in memos are
+  called BLOBs.
+- memo recovery leaves extra memo file sections intact as much as possible.
+
+WARNING: Make sure that your data files are 'healthy' before inserting
+trace codes into them. Run a thorough Recover error scan and any needed
+repairs beforehand. Otherwise you may get 'incorrect' file repairs simply
+because you trace coded corrupt records or memos to start with.
+
+Trace code in DBF files:
+=========================
+Trace requires an extra 7 character 'r_trace_' field at beginning of the 
+record in your table (or 16 character field if tracers are included in 
+memos). When you generate a new definition file, Gendef.app can optionally 
+modify the table for you and insert traces into your table records. For 
+Visual FoxPro files GenDef will make the necessary modification to the 
+associated database file, .DBC, preserving relations, indexes and long 
+names.
+
+Trace requires some additional program coding. If you select not to use 
+memo tracing (see below) your programming code changes are fairly simple 
+and you save 9 field spaces in your records.
+
+The Rtrace function is supplied with registered RECOVER copy for writing 
+the security code field to your records.
+
+Procedure - Purpose/Parameters
+----------------------------------------------
+RTrace() - Writes trace code for file recovery
+	     /None: trace in .DBFs only
+	     /One:  trace in .DBFs and .FPTs
+
+When appending .DBF records use the Rtrace() procedure:
+
+APPEND BLANK
+REPLACE r_trace_ WITH Rtrace();
+  field2 WITH value2;
+  field3 WITH value3;
+        .
+        .
+  fieldN WITH valueN
+
+OR if using SQL insert
+
+INSERT INTO <filename> VALUES (Rtrace(), value2, value3, ......, valueN)
+
+Trace code in memos: 
+======================
+Trace method requires more care with memos. You need to declare the 
+MemoTrace variable public somewhere at beginning of your program.
+
+PUBLIC MemoTrace
+MemoTrace = ""
+
+Memo reading writing requires maintaining the 19 trace code characters at 
+the beginning of each non-empty memo. Two functions are included with 
+registered RECOVER copy for writing/reading memos with the trace code.
+
+Procedure - Purpose/<Parameters>
+-------------------------------------------
+MemoPut() - Returns the coded memo content.
+	<FieldName>: name of memo field
+  	<MemoText>: the normal memo text  for memo writing
+MemoGet() - Retrieves the memo text minus the trace code. 
+	<Memo>: the whole memo string.
+
+To append records with tracing of DBF records and memos use the
+Rtrace(1) and Memoput() procedures:
+
+APPEND BLANK
+REPLACE r_trace_ WITH Rtrace(1);
+  field2 WITH value2;
+  field3 WITH value3;
+        .
+        .
+  MemoField1 WITH MemoPut("MemoField1", TheMemoText1);
+        .
+  MemoField2 WITH MemoPut("MemoField2", TheMemoText2);
+        .
+  fieldN WITH valueN
+
+or if using SQL-insert
+
+INSERT INTO <TableName> VALUES(Rtrace(1), value2, value3, ..,;
+  MemoPut("MemoField1", TheMemoText1),;
+  MemoPut("MemoField2", TheMemoText2),..............., valueN)
+
+Whenever memo contents are changed (SCATTER...MEMO/GATHER...MEMO or 
+whatever) you should update the trace code. The syntax is:
+
+Replace r_trace_ with Rtrace(1);
+        MemoField1 with MemoPut("MemoField1", MemoField1);
+        MemoField2 with MemoPut("MemoField2", Memofield1)
+
+Example:
+Replace r_trace_ with Rtrace(1);
+        Descript WITH MemoPut("Descript", Descript);
+        Notes WITH MemoPut("Notes", Notes)
+
+If you initially setup your .DEF file for only .DBF tracing and change
+your mind later to add memo tracing as well, you need to 1) delete the
+R_TRACE_ field from your .DBF file structure 2) re-run the GENDEF
+utility.
+
+VFP Long Names PRECAUTION: There may be a problem when a memo field
+name and any other field in the same table have identical first ten
+characters. The real names stored in .DBF files are only 10 characters
+maximum. Visual Foxpro usually uses the first 10 characters of long
+names for the real names in .DBF, EXCEPT when the two long names have
+same first ten characters. For example long name 'mary_had_a_lamb'
+will be stored as 'MARY_HAD_A' while long name 'mary_had_a_lamb2' will
+be stored as 'MARY_HAD_2'. The best policy is to use different first
+10 characters for field names in the same table if a memo is involved.
+
+
+                         6.0 - SPM Memo salvage 
+                         ~~~~~~~~~~~~~~~~~~~~~~
+
+SPM first of all checks if only a small number of pointers are incorrect. 
+In that case it simply corrects the problem by eliminating the incorrect 
+memo pointers. If the whole memo file data region is simply displaced, SPM 
+can quickly correct such problems.
+
+In more severe cases where memos are in scattered blocks in the memo file, 
+SPM uses its Statistical Pattern Matching ("SPM") method which locates 
+memos in the corrupt memo file (.FPT) and attempts to sort and match them 
+to the locations required in the record file. It attempts to match memos 
+according to size, position and type. This probability in memo recovery 
+depends on: a) variety in memo sizes b) variety in types of memos (normal 
+text memos, general fields, pict memos) c) the number of memos d) if memos 
+are packed - unpacked memos may have better chances.
+
+This method consumes a lot of computer calculating power and the time 
+required is quadratically proportional to the number of memos in the memo 
+file. Recover does not use the method if there is more than 5000 memos in 
+the file - for larger files it would require a super computer to do the job 
+in reasonable time.
+
+ADVANTAGES:
+- SPM salvages both general field and text memos.
+- Requires no user interaction.
+- Requires no additional program coding.
+
+DISADVANTAGES:
+- SLOW - For badly fragmented memo files SPM is MUCH slower than the Trace
+  method. The time for SPM statistical sorting method increases
+  quadratically with number of the records and memo count.
+- It is not as highly accurate as the Trace method.
+
+OTHER COMMENTS:
+A) There may be a few situations whew SPM will not restore some memos (but 
+see note below). For example, if a recently packed file requires 100 memos 
+all of the same size and type and there is only ten memos found in the 
+fragmented memo file, there is no statistical way to determine where the 
+ten memos should be assigned to.
+
+B) SPM stores any non-fitted or extraneous memos (or general and Pict 
+fields) found into the table RecoverM.DBF/FPT. You can browse the table 
+RecoverM (if created) to extract memos not found in the recovered memo 
+file. The last field, "Dbf_record" memo, may have suggested record numbers 
+for the memo. MAKE SURE YOUR APP DOES NOT USE a "RecoverM.dbf" file.
+
+                   7.0 - OTHER APPLICATION NOTES
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+7.1 International Language Support:
+===============================
+This feature is available for the royalty free version.
+Recover allows progress messages and End MsgBox dialogs in different
+languages.
+
+Recover messages are in English by default. If the file RecovMsg.dbf
+is present in Recover startup directory, Recover will use the MSG field
+for messages instead of the default English ones. The file RecovMsg.dbf
+is included with royalty free Recover editions. To have Recover use
+messages in your own language, you need merely to translate the
+messages to your language. Be careful about word orientation. Some
+messages are partial messages expecting another part to follow with
+a numeric characters in between (for example a record number) which
+is generated by Recover and not from the RecovMsg.dbf messages.
+
+The first record is not a message but the font Recover uses to display
+the messages. You can change the font to suit your language support as
+long as the font is a standard Windows (or MAC) font (font is ignored
+in FoxPro for DOS). It is also suggested not to choose a very wide font
+in which case the message may not fit in the progress window and result
+in "OFF SCREEN..." type of error messages.
+
+7.2 Coding Recover in your App (royalty free ver.)
+==============================
+RECOVER (and GENDEF) uses low level functions and require exclusive access 
+to the files. In that case you must log off other users on a network and 
+close the table to be recovered. A good place to test integrity/ 
+accessibility of shared files and repair them is at the beginning of the 
+first program user where exclusive use is possible.
+
+Here is an example of one of many ways how to fix tables on the fly
+with RECOVER:
+
+Two error codes relating to corrupt tables/memos are:
+Error code 15 - 'Not a table/DBF file.'
+Error code 41 - 'Memo file is missing/invalid'
+
+In your program you could use a procedure 'OpenTable' to test open a database
+for you and repair the table if necessary. The following is valid ONLY
+if exclusive use can be obtained - single or First Network user.
+
+PROCEDURE OpenTable
+Parameter FileName
+Private ErrorCode
+ErrorCode=0
+ON ERROR ErrorCode=ERROR()
+USE (FileName) EXCLUSIVE
+ON ERROR
+IF ErrorCode=0
+  USE IN (FileName)
+  RETURN
+ENDIF
+IF ErrorCode=15 OR ErrorCode=41 && file corruption problem
+  =Recover('FileName.dbf')
+  * IF TAGs used, re-index OR rebuild .CDX file - as show above
+  * and rebuild any associated .IDX file
+  ...
+ELSE && it is another problem - network file access, bad index, etc.
+  * check error code and take appropriate action
+ENDIF
+
+Another approach would be to call Recover at your app startup and have it 
+check each error prone table just to make sure. This takes a little longer 
+but would ensure integrity of your tables.
+
+Procedure CheckTable
+Parameter FileName
+IF Recover(FileName) > -1
+  * IF TAGs used, re-index OR rebuild .CDX file - as show above
+  * and rebuild any associated .IDX file
+  ...
+ENDIF
+
+If you have multiple error prone tables, you could save the specific table
+names into an array or another table - say Tables.dbf having TableName
+fields - and use OpenTable or CheckTable to check through all tables you
+want checked.
+
+Select Tables && or USE Tables
+SCAN
+  Select 0
+  =OpenTable(TableName) && or CheckTable(TableName)
+  Select Tables
+ENDSCAN
+
+NOTE: Since Recover itself uses ON ERROR routines, you should not
+call Recover from an ON ERROR routine. If you use an error routine, for 
+checking DBF/FPT errors, you should have it return first, release the
+error routine (with command ON ERROR) and then call Recover.
+
+The following is a handy little routine if you want to check/repair all
+tables in current directory. This example scans/repairs the tables without
+stopping for the end <OK> message box dialog. Again, remember that
+exclusive file use is required - the best place for that is at beginning of
+first program user before file sharing starts.
+
+* Change this to suit your needs.
+PROCEDURE RecovAll
+PRIVATE ALL
+DBFCount = ADIR(DBFx, '*.dbf')
+FOR i = 1 TO DBFCount
+  IF DBFx[i,1] != 'FOXUSER.DBF';
+      AND DBFx[i,1] != 'RECOVMSG.DBF';
+      AND DBFx[i,1] != 'RECOVERM.DBF'
+    =RECOVER(DBFx[i,1],'','TTFFTTTTTTTTTTTTTTFTT')
+  ENDIF
+ENDFOR
+
+7.2.1 Testing Recover with sample corrupted files
+=================================================
+
+It is natural to want to test Recover with corrupt files to see that it
+works before sending your app into the field. The best test files are real
+life corrupted files. In absence of them it is tempting sometimes to
+corrupt a sample file deliberately and then use that for testing. If you
+know file structure and are skilled in using binary or hex editors file
+damage can be simulated. It is not a good idea to use common text editors -
+like windows notepad or the built in FoxPro editor. They introduce extra
+line feed and space characters that can completely change file
+characteristics so that it canot be fixed. Even when knowing how to handle
+binary editors it is possible to artificially introduce some non-real life
+file corruption that will not be handled properly by Recover.
+It is not really a good use of time to design Recover to anticipate
+artificial, non-real life corruption problems.
+
+If you want some realistic sample corrupted files - both FP2.X and Visual
+Foxpro files - for testing purposes, a variety of them is available in the
+file http://abri.com/samplbad.zip at our web site.
+
+7.3 Re-building .CDX file
+=========================
+RECOVER will re-associate the .CDX file - if found - to the table. It is 
+generally advisable to rebuild the .CDX file after the table was recovered. 
+A typical approach is:
+
+DELETE TAG ALL
+INDEX ON <Expr1> TAG <ExprName1>
+INDEX ON <Expr2> TAG <ExprName2>
+etc.
+
+In Visual FoxPro this may be more complicated if the table is part of a 
+database with long field and index names.
+
+7.4 Eliminating User Interaction:
+=================================
+There are only two ways the user may need to interact with Recover process.
+If little or no user interaction is important, you can eliminate one or both
+interaction cases by deselecting it from Recover options.
+
+A) Each time you use RECOVER, it shows a window reporting Recover activity 
+and requires the user to click on the "OK" button. This is the default option
+and can be deselected from the option.
+
+B) RECOVER requires full user interaction if the vFPS ("Visual File pieces
+recovery" screen) is used. If you use the Trace method the vFPS will not
+come up anyway. Otherwise to eliminate this you must exclude the vFPS method
+from the options.
+
+7.5 Non-standard FoxPro tables:
+===============================
+When attempting to recover non-standard FoxPro tables with extensions
+like .SCX/.SCT, .PJX/.PJT, .DBC/.DCT/.DCX
+you need to specify complete names for both the record file and the memo 
+file. For example:
+DO Recover WITH 'MyForm.scx', 'MyForm.sct'
+
+There are some considerations when repairing Visual foxpro (.DBC/.DCT) 
+database files. Recover does not restore messed up persistent relations, 
+validation rules, etc. of VFP database files. Recover only restores the 
+records and memos that still exist in the corrupt file so that it can be 
+opened and used as any other database file. A record or memo that is 
+actually missing from the corrupt .DBC/.DCT cannot be recovered. Missing 
+records or memos may disrupt the proper operation of the database with 
+"Invalid database..." and similar error messages. This consideration also 
+holds for project, screen, report and similar files. Repairing your project 
+- and such other files - may not make it usable unless all records were 
+recovered perfectly.
+
+7.6 Code Pages and Non-Ascii characters:
+========================================
+Some other file fix tools will "clean up" non-Ascii characters from fields 
+and memos. Recover does not change the code page mark in a file nor does it 
+eliminate or change non-Ascii characters in memos or fields - even though 
+this may be convenient in some cases. There can be several serious problems 
+that can be caused by that.
+
+1. It can mess up non-english language characters used in fields and memos 
+(code pages).
+
+2. The second problem caused is elimination of corrupted words in a memo 
+leading to false memo integrity. If corrupted word(s) is(are) left in a 
+memo it is likely that the user can inspect and make suitable intelligent 
+corrections - whereas deletion of characters in text can alter the meaning 
+of the text and go undetected.
+
+3. Even when developing an English language app, the developer may decide 
+to store binary characters in memo and other fields (passwords for example)
+which then would be 'corrupted'.
+
+7.7 Reserved names and variables
+==============================================
+Recover uses a few unique variable/table names. Be sure your program
+does not use the same ones. All the rest of variables are private
+within Recover procedures.
+
+Name:               Purpose:
+-------------------------------------------
+RecoverM.DBF/FPT    Stores non-fitted memos found by SPM.
+
+_Recover??          Temporary database names.
+
+RecoverDef          Alias name of the definition file.
+RecovMsg            Activity messages (for royalty free 
+                               - international support.)
+R_TRACE_            First field name IF TRACE METHOD USED.
+MemoTrace           Public variable required IF TRACE USED IN MEMOS.
+Rtrace, MemoGet &   Function names used IF TRACE METHOD USED.
+MemoPut
+
+7.8 In case of problems / Trouble Shooting
+==========================================
+IMPORTANT NOTE: Most error message problems are caused by incorrect or 
+outdated definition (.def) file.
+
+
+Problem/ErrorMessage ProbableCause/Solution
+-------------------------------------------------------
+Insufficient memory: probably wrong/outdated *.def file.
+
+"Visual File pieces salvage" screen appears: In VERY FEW, "extreme" damage 
+		     cases will the vFPS screen method be required. If 
+		     this screen comes up, first MAKE SURE THAT THE 
+		     DEFINITION FILE IS CORRECT AND UP TO DATE - otherwise 
+		     click on Cancel button and generate correct definition 
+		     file and then try again.
+
+"Definition file error" message: Definition file probably incorrect or missing.
+
+Variable not found:   prob. a network or path problem
+                     - try using =RECOVER(fullpath('filename.dbf'))
+Missing memos with Trace method:
+                     A) memos were simply missing in the bad memo file.
+                     B) memo trace codes were not updated properly in your
+                        program
+Old memos re-appear with Trace recovery:
+                     Trace code was not updated when memo was written or
+                     changed
+
+Partially correct and incorrect recovery:
+                     Likely Trace code was not included for this file and 
+                     was repaired with the "Last field definition search" 
+                     method with standard options selected by default, but 
+                     the file was fragmented in the last part. You can 
+                     select the vFPS method from the option list for this
+		     file repair.
+
+"Off screen" type error messages:
+		     Recover was developed using MS-Windows small fonts.
+		     You may need to set Windows to small screen fonts.
+
+"Not a database file:" after repair:
+                     This occurs if you repair a Visual Foxpro file
+		     with the FPD/FPW/FPM editions of Recover and you
+		     use the 'View file' button. The repaired file
+		     is a Visual Foxpro file and cannot be viewed from
+		     FPD/FPW/FPM FoxPro software.
+
+8.0 Technical Support
+=====================
+
+Before contacting us for techical support, please check above
+section and instructions in this manual. With the royalty free
+edition most the problem frequently is with the way Recover is
+included in the program app. Please check the suggested methods
+in section 7.2 (and possibly 4.0/5.0).
+
+Technical support is limited to 30 minutes telephone time or
+equivalent Email support - to info@abri.com. We have often
+extended the email support without charge. Email requests are
+prefered since it gives us time to check the problem more
+thoroughly. If the problem file is not too large, it sometimes
+helps to compress it and the related files into a .zip file and
+email it to us with details of the problem. Datafile compression
+is usuallly pretty good. 5 MB of datafiles typically compress to
+1MB.
+
+==========================================================================
+Abri Technologies
+126 Blue Jay Rd.                        Phone: (605) 224-0660
+Pierre, SD 57501 USA                    E-Mail: info@abri.com
+
+Problem solving - custom contract programming (FoxPro/C/Delphi...)
+

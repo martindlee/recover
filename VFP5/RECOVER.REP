@@ -1,0 +1,223 @@
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 09:14:08
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 09:18:52
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 09:19:13
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+100 records recovered.
+Please inspect records!
+
+** Memofile: 
+No memo errors found!
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 09:21:34
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+No memo errors found!
+0.18 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 09:25:10
+
+** DBF file: 
+DBF header Error(s)!
+Header repaired!
+** Memofile: 
+No memo errors found!
+0.21 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:10:12
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+No memo errors found!
+0.36 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:10:20
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+No memo errors found!
+0.19 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:25:24
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+No memo errors found!
+0.21 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:26:15
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:28:02
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:36:45
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:39:07
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:43:36
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:43:44
+
+** DBF file: 
+DBF header Error(s)!
+Record 1 field error.
+Browse Screen method:
+100 records recovered.
+Please inspect records!
+
+** Memofile: 
+Record 100, 'PICTURE' memo pointer error!
+SPM: 0/1 memos recovered!
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 11:45:06
+
+** DBF file: 
+Record 100 'LIST_DATE' field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 12:13:11
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+Record 100, 'PICTURE' memo pointer error!
+SPM: 0/1 memos recovered!
+0.52 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 12:13:14
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+Record 100, 'PICTURE' memo pointer error!
+SPM: 0/1 memos recovered!
+0.42 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 12:13:17
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+Record 100, 'PICTURE' memo pointer error!
+SPM: 0/1 memos recovered!
+0.41 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 12:13:27
+
+** DBF file: 
+Record 100 'LIST_DATE' field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 12:15:30
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+Record 100, 'PICTURE' memo pointer error!
+SPM: 0/1 memos recovered!
+0.69 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 12:15:40
+
+** DBF file: 
+Record 100  warning: field 'COMPANY'
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 13:00:46
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+Record 100, 'PICTURE' memo pointer error!
+SPM: 0/1 memos recovered!
+0.36 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 13:00:53
+
+** DBF file: 
+Record 100 'LIST_DATE' field error.
+Browse Screen method:
+BrowseMethod cancel requested!
+
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 13:03:06
+
+** DBF file: 
+.No DBF errors found!
+** Memofile: 
+Record 100, 'PICTURE' memo pointer error!
+SPM: 0/1 memos recovered!
+0.94 seconds.
+****************************
+'C:\RECOV20\VFP5\SAMPLE8 Recover report - 08/15/97 13:03:17
+
+** DBF file: 
+Record 100  warning: field 'COMPANY'
+Browse Screen method:
+BrowseMethod cancel requested!
+

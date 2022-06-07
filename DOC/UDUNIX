@@ -1,0 +1,3 @@
+echo sending ug2to3.txt
+/usr/sbin/sendmail -t < ug2to3.txt
+rm ug2to3.txt

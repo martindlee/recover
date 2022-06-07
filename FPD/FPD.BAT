@@ -1,0 +1,1 @@
+c:\fpd26\fox.exe -t

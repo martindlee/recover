@@ -1,0 +1,10 @@
+NOTE: Recover will correct
+Alpha5 files require manual changes in the .def file -
+change 'FP2X' to 'ALP5'. Alpha5 file memos are not exactly like
+FoxPro memos. Gendef will generate a .def file assuming it
+is a standard Alpha5 file. After generating the .def file
+the string 'FP2X' in the last record needs to to be changed to
+'ALP5'. This can be done in FoxPro with Browse or a similar
+database utility or with a binary or hex editor to search for
+'FP2X' and change it to the 'ALP5' string.
+
