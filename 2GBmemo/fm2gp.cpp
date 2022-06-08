@@ -13,14 +13,14 @@
 #include <string.h>
 
 // UDF prototypes
-HANDLE lcreate(LPCTSTR);
-HANDLE lopen(LPCTSTR, DWORD);
+HANDLE lcreate(LPCSTR);
+HANDLE lopen(LPCSTR, DWORD);
 DWORD lseek(HANDLE, DWORD, DWORD);
 BOOL lclose(HANDLE);
 int lread(HANDLE, LPVOID, DWORD);
 DWORD lwrite(HANDLE, LPVOID, DWORD);
                             
-void MBox(PSTR);
+void MBox(LPCWSTR);
 void CopyStr(char *, char *, int);
 int Str2Int(PSTR, int);
 PSTR Int2Str(double, int); // will take integers and double too
@@ -95,7 +95,7 @@ int FileType = 245, //= GetValue(hFile, 0, 1, 1), // file type 3 = dBase, 48 = V
 DWORD mFileSize = GetFileSize(Memohandle, NULL); // NULL good up to 4gig
 char MemoType[5] = "\x00\x00\x00\x01"; // ordinary memo type - should get this from .def file or memo pos.
 
-char RecordString[65535], MemoBfr[65535];
+char RecordString[65535];
 int Recnum, mBlockNo, NextBlock = 8, mSize = 0, mTotSpace;
 DWORD mPos0, mPos; // memo positions, old/new
                                                 
@@ -120,7 +120,7 @@ for (Recnum = 1; Recnum < 775522; Recnum++){
       PutString(MemohandleR, mPos, GetString(Memohandle, mPos0, mTotSpace), mTotSpace);
       CopyStr(Int2Str(NextBlock, 10), RecordString + FldProp[j].fpos, 10); // change this for VFP
       //MBox(Int2Str(mPos, 20)); // test only
-      NextBlock = NextBlock + ceil((float)(mSize + 8)/(float)mBlockSize);
+      NextBlock = NextBlock + lround(ceil((float)(mSize + 8) / (float)mBlockSize));
     }
   }
   PutString(DBFhandleR, FirstRecPos + (NewRec-1)*RecordLen, RecordString, RecordLen);
@@ -141,8 +141,8 @@ return 0;
 }
 
 // ** --- Simplified File i/o UDFs --- **
-HANDLE lcreate(LPCTSTR FileName)
-{return CreateFile(
+HANDLE lcreate(LPCSTR FileName)
+{return CreateFileA(
     FileName,	// pointer to name of the file
     GENERIC_READ | GENERIC_WRITE,	// access (read-write) mode
     0,	// exclusive access only - no share mode
@@ -152,8 +152,8 @@ HANDLE lcreate(LPCTSTR FileName)
     NULL // handle to file with attributes to copy
    );}
 
-HANDLE lopen(LPCTSTR FileName, DWORD Access)
-{return CreateFile(
+HANDLE lopen(LPCSTR FileName, DWORD Access)
+{return CreateFileA(
     FileName,	// pointer to name of the file
     Access,	// access (read-write) mode
     0,	// exclusive access - no share mode
@@ -200,8 +200,8 @@ else
 
 // ** ----- other functions
 
-void MBox(PSTR Msg)
-{MessageBox(NULL, Msg,  "Notice.", 0);} // simplified message box
+void MBox(LPCWSTR Msg)
+{MessageBox(NULL, Msg, (LPCWSTR)"Notice.", 0);} // simplified message box
 
 void CopyStr(char *src, char *dest, int nbytes)
 {// copies nbytes from src at src to dest at dest - nut a null terminated string
@@ -248,24 +248,24 @@ static char buffer[200];
 //double log10(double x)
 double decm0 = decm; //4294967296;
 int LeftDigit;
-if (decm0 > 1.0) MBox("Greater than 1"); else MBox("Smaller than 1");
+if (decm0 > 1.0) MBox((LPCWSTR)"Greater than 1"); else MBox((LPCWSTR)"Smaller than 1");
 
 
 int DCount = (int)log10(decm0) + 1; // decimal digit count  (long double)decm0
 
 //DCount = (int) log10((double)decm0);
 
-MBox(Int2Str((int)DCount, 20));
+MBox((LPCWSTR)Int2Str((int)DCount, 20));
 int DPadCount = n - DCount;
 for (int i = 0; i < DPadCount; i++) buffer[i] = ' '; // pad with front blanks
-MBox(Int2Str(DCount, 10));
+MBox((LPCWSTR)Int2Str(DCount, 10));
 for (int i = 0; i < DCount; i++){
-  MBox(Int2Str(DCount - i - 1, 10));
+  MBox((LPCWSTR)Int2Str(DCount - i - 1, 10));
   LeftDigit = (char)(decm0/pow(10, DCount - i - 1));
   buffer[i + DPadCount] = LeftDigit + 48; // current left char
   decm0 = decm0 - ((int)LeftDigit*pow(10, DCount - i - 1));
 }
-MBox("finish");
+MBox((LPCWSTR)"finish");
 buffer[DCount + DPadCount] = 0; // null terminated string
 return buffer;
 }
@@ -282,7 +282,7 @@ else A = strlen - 1;
 for (i = A; i != B + dirn; i = i + dirn){
   if (STRING[j] < 0) ByteVal = 256 + STRING[j]; // char has signed value
   else ByteVal = STRING[j];
-  RetVal = (ByteVal)*pow(256, i) + RetVal;
+  RetVal = (ByteVal)*lround(pow(256, i)) + RetVal;
   j=j+1;}
 return RetVal;}
 
