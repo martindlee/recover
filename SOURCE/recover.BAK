@@ -14,9 +14,8 @@
 ************************************************************************
 PARAMETERS DBFnm, FPTnm, RecovOpts, Dext
 PRIVATE ALL
-* If you want to experience the demo version of the software,
-* change .F. to .T. in the following line
-#DEFINE demo .F.
+* If you want to experience the demo version of the software, comment the following line out
+DEFINE demo .F.
 
 * Save/setup envoronment conditions
 OldArea = SELECT()
