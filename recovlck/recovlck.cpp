@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <stdio.h>
 #pragma hdrstop
-#include <condefs.h>
+#include <winbase.h>
 #include <math.h>
 #include <string.h>
 
@@ -10,8 +10,8 @@
 char *Int2Str(int);
 char *LongInt2Byte(unsigned long, int, int);
 unsigned long Byte2LongInt(char *, unsigned long, int);
-HANDLE lcreate(LPCTSTR FileName);
-HANDLE lopen(LPCTSTR, DWORD);
+HANDLE lcreate(LPCSTR FileName);
+HANDLE lopen(LPCSTR, DWORD);
 DWORD lseek(HANDLE, LONG, DWORD);
 BOOL lclose(HANDLE);
 BOOL lread(HANDLE, LPVOID, DWORD);
@@ -20,19 +20,19 @@ unsigned long GetValue(HANDLE, long int, DWORD, int);
 BOOL PutValue(HANDLE, long int, unsigned long, DWORD, int);
 
 //---------------------------------------------------------------------------
-#pragma argsused
+int
 WINAPI WinMain(HINSTANCE, HINSTANCE,
 LPSTR ParmString, // the whole parameter string - but not this program.exe
 int)
 {
 // Used with Recover FPD/FPW to reduce 2MB+ files to below 2MB so that recover can fix it
 if (strlen(ParmString) == 0){
-  MessageBox(NULL, "This is an associate Recover file and not the Recover main utility.", "Notice.", 0);
+  MessageBox(NULL, L"This is an associate Recover file and not the Recover main utility.", L"Notice.", 0);
   return 0;
   }
 HANDLE hFile1 = lopen(ParmString, GENERIC_WRITE | GENERIC_READ);
 if (hFile1==INVALID_HANDLE_VALUE){
-  MessageBox(NULL, "File to trim not found or not accessible.", "Notice!", 0);
+  MessageBox(NULL, L"File to trim not found or not accessible.", L"Notice!", 0);
   return 0;}
 
 if (GetFileSize(hFile1, NULL) > (DWORD)2147483647
@@ -40,10 +40,10 @@ if (GetFileSize(hFile1, NULL) > (DWORD)2147483647
     SetEndOfFile(hFile1);
     PutValue(hFile1, 4, GetValue(hFile1, 4, 4, 1) + 1, 4, 1); // change the record counter so that Recover gives a repair message
     MessageBox(NULL,
-      "For the 16 bit DOS and FPW Recover editions, 2GB+ file repair is a 2 step process. Please TURN OFF ALL OPTIONS EXCEPT: \"Check record file header\" and \"Header repair\" (for record file) and run Recover repair on this file again.",
-      "Notice", 0);
+      L"For the 16 bit DOS and FPW Recover editions, 2GB+ file repair is a 2 step process. Please TURN OFF ALL OPTIONS EXCEPT: \"Check record file header\" and \"Header repair\" (for record file) and run Recover repair on this file again.",
+      L"Notice", 0);
   }
-else MessageBox(NULL, "This step not necessary for this file.", "Notice!", 0);
+else MessageBox(NULL, L"This step not necessary for this file.", L"Notice!", 0);
 
 lclose(hFile1);
 return 0;
@@ -63,7 +63,7 @@ int DCount = (int)log10(double(decm0)) + 1;
 for (int i = 0; i < DCount; i++){
   LeftDigit = (char)(decm0/pow(10, DCount - i - 1));
   buffer[i + sign] = LeftDigit + 48; // current left char
-  decm0 = decm0 - (int)LeftDigit*pow(10, DCount - i - 1);
+  decm0 = decm0 - (int)LeftDigit*lround(pow(10, DCount - i - 1));
   }
 buffer[DCount + sign] = 0; // null terminated string
 return buffer;
@@ -81,7 +81,7 @@ else A = strlen - 1;
 for (i = A; i != B + dirn; i = i + dirn){
   if (STRING[j] < 0) ByteVal = 256 + STRING[j]; // character has signed value
   else ByteVal = STRING[j];
-  RetVal = (ByteVal)*pow(256, i) + RetVal;
+  RetVal = (ByteVal)*lround(pow(256, i)) + RetVal;
   j=j+1;}
 return RetVal;}
 
@@ -107,8 +107,8 @@ return retval;
 }
 
 // ** --- Simplified File i/o UDFs --- **
-HANDLE lcreate(LPCTSTR FileName)
-{return CreateFile(
+HANDLE lcreate(LPCSTR FileName)
+{return CreateFileA(
     FileName,	// pointer to name of the file
     GENERIC_READ | GENERIC_WRITE,	// access (read-write) mode
     0,	// exclusive access only - no share mode
@@ -118,8 +118,8 @@ HANDLE lcreate(LPCTSTR FileName)
     NULL // handle to file with attributes to copy
    );}
 
-HANDLE lopen(LPCTSTR FileName, DWORD Access)
-{return CreateFile(
+HANDLE lopen(LPCSTR FileName, DWORD Access)
+{return CreateFileA(
     FileName,	// pointer to name of the file
     Access,	// access (read-write) mode
     0,	// exclusive access - no share mode

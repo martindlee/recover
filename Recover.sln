@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fm2gp", "2GBmemo\fm2gp\fm2gp.vcxproj", "{B757F2BF-1564-44A4-94A1-7EA353863044}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "recovlck", "recovlck\recovlck\recovlck.vcxproj", "{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{B757F2BF-1564-44A4-94A1-7EA353863044}.Release|x64.Build.0 = Release|x64
 		{B757F2BF-1564-44A4-94A1-7EA353863044}.Release|x86.ActiveCfg = Release|Win32
 		{B757F2BF-1564-44A4-94A1-7EA353863044}.Release|x86.Build.0 = Release|Win32
+		{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}.Debug|x64.ActiveCfg = Debug|x64
+		{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}.Debug|x64.Build.0 = Debug|x64
+		{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}.Debug|x86.ActiveCfg = Debug|Win32
+		{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}.Debug|x86.Build.0 = Debug|Win32
+		{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}.Release|x64.ActiveCfg = Release|x64
+		{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}.Release|x64.Build.0 = Release|x64
+		{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}.Release|x86.ActiveCfg = Release|Win32
+		{4C26A8E4-CA58-48AC-86BF-2D91B88EAD21}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
