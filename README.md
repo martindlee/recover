@@ -1,5 +1,6 @@
-Recover is a FoxPro database recovery utility that was written by Paul Lee and distributed by his Abri Technologies business
-from the mid-1990's through 2012. It is being released as open source so that any remaining users may benefit from it.
+Recover is a FoxPro database recovery utility that was written by Paul Lee and distributed by his Abri Technologies business 
+from 1995 through 2005 (give or take). It is being released as open source under the MIT license so that any remaining users 
+may benefit from it.
 
 Portions of this software (specifically the "Trace" method of recovery) are covered by expired US patent 5,870,762 which was 
 obtained by Paul Lee. You can read more at https://patents.google.com/patent/US5870762A/en
